@@ -1,7 +1,7 @@
 # Jobility
 
 <p align="center">
-  <h3>Mobile & Desktop Logo</h3>
+  <h3 align="center">Mobile & Desktop Logo</h3>
 </p>
 <p align="center">
   <img src="assets/img/mobile-logo.jpg" alt="Logo" width="200"/>
