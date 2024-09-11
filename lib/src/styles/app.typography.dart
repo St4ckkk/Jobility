@@ -58,7 +58,7 @@ class AppTypography {
 
   static TextStyle get subtitleLarge => TextStyle(
         fontFamily: 'DM Sans',
-        fontSize: 18.0,
+        fontSize: 40.0,
         color: AppColors.textColor,
       );
 

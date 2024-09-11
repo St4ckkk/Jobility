@@ -14,7 +14,7 @@ class AppLayout {
   // Image sizes
   static const double imageSmall = 60.0;
   static const double imageMedium = 100.0;
-  static const double imageLarge = 150.0;
+  static const double imageLarge = 400.0;
 
   // Border radius
   static const BorderRadiusGeometry borderRadiusSmall =
@@ -22,5 +22,10 @@ class AppLayout {
   static const BorderRadiusGeometry borderRadiusMedium =
       BorderRadius.all(Radius.circular(16.0));
   static const BorderRadiusGeometry borderRadiusLarge =
-      BorderRadius.all(Radius.circular(24.0));
+      BorderRadius.all(Radius.circular(50.0));
+
+  // Custom SizedBox spacers
+  static const SizedBox spaceSmall = SizedBox(height: 8.0);
+  static const SizedBox spaceMedium = SizedBox(height: 40.0);
+  static const SizedBox spaceLarge = SizedBox(height: 60.0);
 }
