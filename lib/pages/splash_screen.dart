@@ -69,8 +69,8 @@ class _SplashScreenState extends State<SplashScreen>
                   },
                   child: Image.asset(
                     AssetPaths.getImagePath('logo-medium.png'),
-                    width: AppLayout.imageSmall,
-                    height: AppLayout.imageSmall,
+                    width: AppLayout.imageMedium,
+                    height: AppLayout.imageMedium,
                     fit: BoxFit.contain,
                   ),
                 ),

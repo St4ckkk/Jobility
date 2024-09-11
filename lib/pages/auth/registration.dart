@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../core/imports.dart';
+import '../../core/functions.dart';
 
 class RegistrationPage extends StatelessWidget {
   const RegistrationPage({super.key});
@@ -7,14 +8,14 @@ class RegistrationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Registration'),
-      ),
-      body: Center(
-        child: Text(
-          'Registration Page Content',
-          style: AppTypography.headlineLarge,
-        ),
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.asset(
+            AssetPaths.getImagePath('registration-cover.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ],
       ),
     );
   }
