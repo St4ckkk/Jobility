@@ -12,7 +12,7 @@ class AppLayout {
   static const EdgeInsetsGeometry paddingLarge = EdgeInsets.all(24.0);
 
   // Image sizes
-  static const double imageSmall = 60.0;
+  static const double imageSmall = 30.0;
   static const double imageMedium = 80.0;
   static const double imageLarge = 350.0;
 
@@ -26,6 +26,29 @@ class AppLayout {
 
   // Custom SizedBox spacers
   static const SizedBox spaceSmall = SizedBox(height: 8.0);
-  static const SizedBox spaceMedium = SizedBox(height: 40.0);
+  static const SizedBox spaceMedium = SizedBox(height: 30.0);
   static const SizedBox spaceLarge = SizedBox(height: 60.0);
+
+  static const SizedBox spaceSmallWidth = SizedBox(width: 8.0);
+  static const SizedBox spaceMediumWidth = SizedBox(width: 40.0);
+  static const SizedBox spaceLargeWidth = SizedBox(width: 60.0);
+
+  // Button sizes
+  static const double buttonHeightSmall = 40.0;
+  static const double buttonHeightMedium = 50.0;
+  static const double buttonHeightLarge = 60.0;
+
+  static const double buttonWidthSmall = 120.0;
+  static const double buttonWidthMedium = 150.0;
+  static const double buttonWidthLarge = 200.0;
+
+
+  // Getters for top margins and paddings
+  static EdgeInsetsGeometry get marginTopSmall => EdgeInsets.only(top: 8.0);
+  static EdgeInsetsGeometry get marginTopMedium => EdgeInsets.only(top: 16.0);
+  static EdgeInsetsGeometry get marginTopLarge => EdgeInsets.only(top: 24.0);
+
+  static EdgeInsetsGeometry get paddingTopSmall => EdgeInsets.only(top: 8.0);
+  static EdgeInsetsGeometry get paddingTopMedium => EdgeInsets.only(top: 16.0);
+  static EdgeInsetsGeometry get paddingTopLarge => EdgeInsets.only(top: 24.0);
 }

@@ -10,6 +10,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const SplashScreen());
       case '/registration':
         return MaterialPageRoute(builder: (_) => const RegistrationPage());
+      // case '/signin':
+      //    return MaterialPageRoute(builder: (_) => const LoginPage());
       default:
         return MaterialPageRoute(builder: (_) => const HomePage());
     }

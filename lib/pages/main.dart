@@ -5,7 +5,6 @@ import '../core/functions.dart';
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  // Method to navigate to the Registration page
   void _navigateToRegistration(BuildContext context) {
     Navigator.pushNamed(context, '/registration');
   }

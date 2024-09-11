@@ -13,8 +13,8 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/splash',  // Set the initial route to splash screen
-      onGenerateRoute: AppRouter.generateRoute,  // Use the router for route generation
+      initialRoute: '/splash',  
+      onGenerateRoute: AppRouter.generateRoute,  
     );
   }
 }
