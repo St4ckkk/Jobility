@@ -21,13 +21,12 @@ class _SplashScreenState extends State<SplashScreen>
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 2),
-    )..repeat(reverse: true); 
-  
+    )..repeat(reverse: true);
+
     _animation = Tween<double>(begin: 0, end: 10).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
     );
 
-  
     SchedulerBinding.instance.addPostFrameCallback((_) {
       Future.delayed(const Duration(seconds: 3), () {
         Navigator.pushReplacement(
@@ -40,39 +39,45 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   void dispose() {
-    _controller.dispose();  
+    _controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            AnimatedBuilder(
-              animation: _animation,
-              builder: (context, child) {
-                return Transform.translate(
-                  offset: Offset(0, -_animation.value), 
-                  child: child,
-                );
-              },
-              child: Image.asset(
-                AssetPaths.getImagePath('logo-small.png'),
-                width: AppLayout.imageSmall,
-                height: AppLayout.imageSmall,
-                fit: BoxFit.contain,
-              ),
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          // Background Image
+          Image.asset(
+            'assets/images/cover.jpg',
+            fit: BoxFit.cover,
+          ),
+          // SplashScreen content
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                AnimatedBuilder(
+                  animation: _animation,
+                  builder: (context, child) {
+                    return Transform.translate(
+                      offset: Offset(0, -_animation.value),
+                      child: child,
+                    );
+                  },
+                  child: Image.asset(
+                    AssetPaths.getImagePath('logo-medium.png'),
+                    width: AppLayout.imageMedium,
+                    height: AppLayout.imageMedium,
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 20),
-            Text(
-              'Jobility',
-              style: AppTypography.headlineLarge,
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

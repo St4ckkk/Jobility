@@ -29,3 +29,5 @@ flutter:
     - assets/images/logo-big.png
     - assets/images/logo-medium.png
     - assets/images/logo-small.png
+    - assets/images/cover.jpg
+    - assets/images/header.png
