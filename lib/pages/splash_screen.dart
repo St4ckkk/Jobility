@@ -52,7 +52,7 @@ class _SplashScreenState extends State<SplashScreen>
         fit: StackFit.expand,
         children: [
           Image.asset(
-            'assets/images/cover.jpg',
+            AssetPaths.getImagePath('cover.jpg'),
             fit: BoxFit.cover,
           ),
           Center(
@@ -69,8 +69,8 @@ class _SplashScreenState extends State<SplashScreen>
                   },
                   child: Image.asset(
                     AssetPaths.getImagePath('logo-medium.png'),
-                    width: AppLayout.imageMedium,
-                    height: AppLayout.imageMedium,
+                    width: AppLayout.imageSmall,
+                    height: AppLayout.imageSmall,
                     fit: BoxFit.contain,
                   ),
                 ),

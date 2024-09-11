@@ -13,8 +13,8 @@ class AppLayout {
 
   // Image sizes
   static const double imageSmall = 60.0;
-  static const double imageMedium = 100.0;
-  static const double imageLarge = 400.0;
+  static const double imageMedium = 200.0;
+  static const double imageLarge = 350.0;
 
   // Border radius
   static const BorderRadiusGeometry borderRadiusSmall =

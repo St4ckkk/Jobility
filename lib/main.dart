@@ -1,7 +1,5 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
-import 'core/imports.dart';
+import 'routes.dart';
 
 
 void main() {
@@ -15,7 +13,8 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(), 
+      initialRoute: '/splash',  // Set the initial route to splash screen
+      onGenerateRoute: AppRouter.generateRoute,  // Use the router for route generation
     );
   }
 }

@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:jobility_app/core/Functions.dart';
 import '../core/imports.dart';
+import '../core/functions.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
+
+  // Method to navigate to the Registration page
+  void _navigateToRegistration(BuildContext context) {
+    Navigator.pushNamed(context, '/registration');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +16,7 @@ class HomePage extends StatelessWidget {
       body: Stack(
         children: [
           Align(
-            alignment: Alignment(0, -0.6), 
+            alignment: const Alignment(0, -0.2), 
             child: Column(
               mainAxisSize: MainAxisSize.min, 
               children: [
@@ -21,7 +26,7 @@ class HomePage extends StatelessWidget {
                   width: AppLayout.imageLarge,
                   fit: BoxFit.contain,
                 ),
-                AppLayout.spaceSmall,
+                AppLayout.spaceMedium,
                 Align(
                   alignment: Alignment.centerLeft, 
                   child: Padding(
@@ -74,13 +79,11 @@ class HomePage extends StatelessWidget {
             child: Padding(
               padding: AppLayout.paddingLarge,
               child: FloatingActionButton(
-                onPressed: () {
-                  // Action for button press
-                },
-                backgroundColor: AppColors.darkPrimaryColor,
-                child: Icon(Icons.arrow_forward, color: Colors.white),
-                shape: RoundedRectangleBorder(
-                  borderRadius: AppLayout.borderRadiusLarge, 
+                onPressed: () => _navigateToRegistration(context),
+                backgroundColor: AppColors.primaryColor,
+                child: const Icon(Icons.arrow_forward, color: AppColors.lightColor),
+                shape: const RoundedRectangleBorder(
+                  borderRadius: AppLayout.borderRadiusLarge,
                 ),
               ),
             ),
