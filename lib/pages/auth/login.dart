@@ -259,7 +259,7 @@ class _LoginPageState extends State<LoginPage> {
                         Expanded(
                           child: Text.rich(
                             TextSpan(
-                              text: 'Remember me',
+                              text: 'Remember me.',
                               style: AppTypography.bodySmall.copyWith(
                                 color: AppColors.lightAccentColor,
                               ),
