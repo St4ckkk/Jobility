@@ -44,11 +44,11 @@ class AppLayout {
 
 
   // Getters for top margins and paddings
-  static EdgeInsetsGeometry get marginTopSmall => EdgeInsets.only(top: 8.0);
-  static EdgeInsetsGeometry get marginTopMedium => EdgeInsets.only(top: 16.0);
-  static EdgeInsetsGeometry get marginTopLarge => EdgeInsets.only(top: 24.0);
+  static EdgeInsetsGeometry get marginTopSmall => const EdgeInsets.only(top: 8.0);
+  static EdgeInsetsGeometry get marginTopMedium => const EdgeInsets.only(top: 16.0);
+  static EdgeInsetsGeometry get marginTopLarge => const EdgeInsets.only(top: 24.0);
 
-  static EdgeInsetsGeometry get paddingTopSmall => EdgeInsets.only(top: 8.0);
-  static EdgeInsetsGeometry get paddingTopMedium => EdgeInsets.only(top: 16.0);
-  static EdgeInsetsGeometry get paddingTopLarge => EdgeInsets.only(top: 24.0);
+  static EdgeInsetsGeometry get paddingTopSmall => const EdgeInsets.only(top: 8.0);
+  static EdgeInsetsGeometry get paddingTopMedium => const EdgeInsets.only(top: 16.0);
+  static EdgeInsetsGeometry get paddingTopLarge => const EdgeInsets.only(top: 24.0);
 }

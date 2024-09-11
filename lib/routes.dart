@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'core/imports.dart'; 
+import 'core/imports.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -11,7 +11,9 @@ class AppRouter {
       case '/registration':
         return MaterialPageRoute(builder: (_) => const RegistrationPage());
       case '/signin':
-         return MaterialPageRoute(builder: (_) => const LoginPage());
+        return MaterialPageRoute(builder: (_) => const LoginPage());
+      case '/register':
+        return MaterialPageRoute(builder: (_) => const RegistrationPage());
       default:
         return MaterialPageRoute(builder: (_) => const HomePage());
     }
