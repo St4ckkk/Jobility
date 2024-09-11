@@ -13,7 +13,7 @@ class AppTypography {
 
   static TextStyle get headlineMedium => TextStyle(
         fontFamily: 'DM Sans',
-        fontSize: 24.0,
+        fontSize: 30.0,
         fontWeight: FontWeight.bold,
         color: AppColors.textColor,
       );
