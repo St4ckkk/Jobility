@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../core/imports.dart';
-import '../core/functions.dart';
+import '../core/config/imports.dart';
+import '../core/config/functions.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -80,10 +80,10 @@ class HomePage extends StatelessWidget {
               child: FloatingActionButton(
                 onPressed: () => _navigateToRegistration(context),
                 backgroundColor: AppColors.primaryColor,
-                child: const Icon(Icons.arrow_forward, color: AppColors.lightColor),
                 shape: const RoundedRectangleBorder(
                   borderRadius: AppLayout.borderRadiusLarge,
                 ),
+                child: const Icon(Icons.arrow_forward, color: AppColors.lightColor),
               ),
             ),
           ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../core/imports.dart';
-import '../../core/functions.dart';
+import '../../core/config/imports.dart';
+import '../../core/config/functions.dart';
 import 'package:flutter/gestures.dart';
 
 class RegistrationPage extends StatelessWidget {
@@ -26,7 +26,6 @@ class RegistrationPage extends StatelessWidget {
             child: Padding(
               padding: AppLayout.marginLarge,
               child: SingleChildScrollView(
-                // Added SingleChildScrollView to prevent overflow
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -95,16 +94,16 @@ class RegistrationPage extends StatelessWidget {
                                 .withOpacity(0.2),
                             spreadRadius: 2,
                             blurRadius: 6,
-                            offset: Offset(0, 3),
+                            offset: const Offset(0, 3),
                           ),
                         ],
                         borderRadius: BorderRadius.circular(8.0),
                       ),
-                      child: TextField(
+                      child: const TextField(
                         decoration: InputDecoration(
                           hintText: 'Enter your email or phone',
                           border: InputBorder.none,
-                          contentPadding: const EdgeInsets.symmetric(
+                          contentPadding: EdgeInsets.symmetric(
                               vertical: 12.0, horizontal: 16.0),
                         ),
                         keyboardType: TextInputType.emailAddress,
@@ -167,7 +166,7 @@ class RegistrationPage extends StatelessWidget {
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.primaryColor,
-                          shape: RoundedRectangleBorder(
+                          shape: const RoundedRectangleBorder(
                             borderRadius: AppLayout.borderRadiusLarge,
                           ),
                         ),
@@ -182,11 +181,11 @@ class RegistrationPage extends StatelessWidget {
                     AppLayout.spaceSmall,
                     Row(
                       children: [
-                        Expanded(
+                        const Expanded(
                           child: Divider(
                             color:
-                                AppColors.accentColor, // Color of the divider
-                            thickness: 2, // Thickness of the divider
+                                AppColors.accentColor,
+                            thickness: 2, 
                           ),
                         ),
                         Padding(
@@ -198,7 +197,7 @@ class RegistrationPage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Expanded(
+                        const Expanded(
                           child: Divider(
                             color: AppColors.accentColor,
                             thickness: 2,
@@ -226,7 +225,7 @@ class RegistrationPage extends StatelessWidget {
                         ),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.lightColor,
-                          shape: RoundedRectangleBorder(
+                          shape: const RoundedRectangleBorder(
                             borderRadius: AppLayout.borderRadiusLarge,
                              side: BorderSide(color: AppColors.primaryColor)
                           ),
@@ -253,7 +252,7 @@ class RegistrationPage extends StatelessWidget {
                         ),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.lightColor,
-                          shape: RoundedRectangleBorder(
+                          shape: const RoundedRectangleBorder(
                             borderRadius: AppLayout.borderRadiusLarge,
                             side: BorderSide(color: AppColors.primaryColor)
                           ),

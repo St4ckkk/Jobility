@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import '../core/imports.dart';
-import '../core/functions.dart';
+import '../core/config/imports.dart';
+import '../core/config/functions.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

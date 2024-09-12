@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'core/imports.dart';
+import 'imports.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
