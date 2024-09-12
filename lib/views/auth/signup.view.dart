@@ -23,6 +23,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
     setState(() {
       _loginForm.validate(value, _passwordController.text);
       _emailError = _loginForm.errors()['email'];
+
+      // Show the password field if the email is valid
+      _showPasswordField = _emailError == null;
     });
   }
 
@@ -37,11 +40,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
     setState(() {
       _loginForm.validate(_emailController.text, _passwordController.text);
       _emailError = _loginForm.errors()['email'];
+      _passwordError = _loginForm.errors()['password'];
 
-      if (_emailError == null) {
-        _showPasswordField = true;
-      } else {
-        _passwordError = _loginForm.errors()['password'];
+      // Navigate to the verification page if both email and password are valid
+      if (_emailError == null && _passwordError == null) {
+        Navigator.pushNamed(context, '/verification');
       }
     });
   }
