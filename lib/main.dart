@@ -13,7 +13,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/splash',  
+      initialRoute: '/sign-in',  
       onGenerateRoute: AppRouter.generateRoute,  
     );
   }

@@ -19,7 +19,8 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _navigateToForgotPassword(BuildContext context) {
-    Navigator.pushNamed(context, '/forgot-password'); // Add route for Forgot Password
+    Navigator.pushNamed(
+        context, '/forgot-password'); // Add route for Forgot Password
   }
 
   @override
@@ -168,12 +169,6 @@ class _LoginPageState extends State<LoginPage> {
                       ],
                     ),
                     AppLayout.spaceMedium,
-                    Text(
-                      'Email or Phone*',
-                      style: AppTypography.subtitleSmall.copyWith(
-                        color: AppColors.lightAccentColor,
-                      ),
-                    ),
                     AppLayout.spaceSmall,
                     Container(
                       decoration: BoxDecoration(
@@ -189,23 +184,25 @@ class _LoginPageState extends State<LoginPage> {
                         ],
                         borderRadius: BorderRadius.circular(8.0),
                       ),
-                      child: const TextField(
+                      child: TextFormField(
                         decoration: InputDecoration(
-                          hintText: 'Enter your email or phone',
-                          border: InputBorder.none,
-                          contentPadding: EdgeInsets.symmetric(
-                              vertical: 12.0, horizontal: 16.0),
+                          labelText: 'Email or Phone',
+                          floatingLabelBehavior: FloatingLabelBehavior.auto,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                            borderSide: BorderSide.none,
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
+                          contentPadding: const EdgeInsets.symmetric(
+                            vertical: 12.0,
+                            horizontal: 16.0,
+                          ),
                         ),
                         keyboardType: TextInputType.emailAddress,
                       ),
                     ),
                     AppLayout.spaceSmall,
-                    Text(
-                      'Password',
-                      style: AppTypography.subtitleSmall.copyWith(
-                        color: AppColors.lightAccentColor,
-                      ),
-                    ),
                     AppLayout.spaceSmall,
                     Container(
                       decoration: BoxDecoration(
@@ -221,13 +218,21 @@ class _LoginPageState extends State<LoginPage> {
                         ],
                         borderRadius: BorderRadius.circular(8.0),
                       ),
-                      child: TextField(
-                        obscureText: _isObscure, // Use the state variable here
+                      child: TextFormField(
+                        obscureText: _isObscure, // Password visibility toggle
                         decoration: InputDecoration(
-                          hintText: 'Enter your password',
-                          border: InputBorder.none,
-                          contentPadding: EdgeInsets.symmetric(
-                              vertical: 12.0, horizontal: 16.0),
+                          labelText: 'Password',
+                          floatingLabelBehavior: FloatingLabelBehavior.auto,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                            borderSide: BorderSide.none,
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
+                          contentPadding: const EdgeInsets.symmetric(
+                            vertical: 12.0,
+                            horizontal: 16.0,
+                          ),
                           suffixIcon: IconButton(
                             icon: Icon(
                               _isObscure
@@ -238,11 +243,12 @@ class _LoginPageState extends State<LoginPage> {
                             onPressed: () {
                               setState(() {
                                 _isObscure =
-                                    !_isObscure; // Toggle password visibility
+                                    !_isObscure; 
                               });
                             },
                           ),
                         ),
+                        keyboardType: TextInputType.visiblePassword,
                       ),
                     ),
                     AppLayout.spaceSmall,
@@ -286,7 +292,7 @@ class _LoginPageState extends State<LoginPage> {
                       alignment: Alignment.centerLeft,
                       child: TextButton(
                         onPressed: () {
-                          _navigateToForgotPassword(context); 
+                          _navigateToForgotPassword(context);
                         },
                         child: Text(
                           'Forgot password?',
