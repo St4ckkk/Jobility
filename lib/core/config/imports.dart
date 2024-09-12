@@ -5,3 +5,5 @@ export '../../views/splash.view.dart';
 export '../../views/auth/signup.view.dart';
 export '../../views/auth/signin.view.dart';
 export '../../views/main.view.dart';
+export '../utils/Validator.dart';
+export '../utils/Forms/LoginForm.dart';

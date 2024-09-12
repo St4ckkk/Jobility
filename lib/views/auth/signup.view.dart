@@ -1,7 +1,7 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import '../../core/config/imports.dart';
 import '../../core/config/functions.dart';
-import 'package:flutter/gestures.dart';
 
 class RegistrationPage extends StatefulWidget {
   const RegistrationPage({super.key});
@@ -13,15 +13,36 @@ class RegistrationPage extends StatefulWidget {
 class _RegistrationPageState extends State<RegistrationPage> {
   bool _showPasswordField = false;
   bool _isObscure = true;
+  String? _emailError;
+  String? _passwordError;
   final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final LoginForm _loginForm = LoginForm();
 
-  void _navigateToSignIn(BuildContext context) {
-    Navigator.pushNamed(context, '/signin');
+  void _validateEmail(String value) {
+    setState(() {
+      _loginForm.validate(value, _passwordController.text);
+      _emailError = _loginForm.errors()['email'];
+    });
+  }
+
+  void _validatePassword(String value) {
+    setState(() {
+      _loginForm.validate(_emailController.text, value);
+      _passwordError = _loginForm.errors()['password'];
+    });
   }
 
   void _onAgreeAndJoinPressed() {
     setState(() {
-      _showPasswordField = true;
+      _loginForm.validate(_emailController.text, _passwordController.text);
+      _emailError = _loginForm.errors()['email'];
+
+      if (_emailError == null) {
+        _showPasswordField = true;
+      } else {
+        _passwordError = _loginForm.errors()['password'];
+      }
     });
   }
 
@@ -86,7 +107,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             ),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
-                                _navigateToSignIn(context);
+                                Navigator.pushNamed(context, '/signin');
                               },
                           ),
                         ],
@@ -94,37 +115,40 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     ),
                     AppLayout.spaceMedium,
                     Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              color: const Color.fromARGB(255, 212, 209, 209)
-                                  .withOpacity(0.2),
-                              spreadRadius: 2,
-                              blurRadius: 6,
-                              offset: const Offset(0, 3),
-                            ),
-                          ],
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        child: TextFormField(
-                          controller: _emailController,
-                          decoration: InputDecoration(
-                            labelText: 'Email or Phone*',
-                            floatingLabelBehavior: FloatingLabelBehavior.auto,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                              borderSide: BorderSide.none,
-                            ),
-                            filled: true,
-                            fillColor: Colors.white,
-                            contentPadding: const EdgeInsets.symmetric(
-                              vertical: 12.0,
-                              horizontal: 16.0,
-                            ),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: const Color.fromARGB(255, 212, 209, 209)
+                                .withOpacity(0.2),
+                            spreadRadius: 2,
+                            blurRadius: 6,
+                            offset: const Offset(0, 3),
                           ),
-                          keyboardType: TextInputType.emailAddress,
-                        )),
+                        ],
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      child: TextFormField(
+                        controller: _emailController,
+                        decoration: InputDecoration(
+                          labelText: 'Email or Phone*',
+                          floatingLabelBehavior: FloatingLabelBehavior.auto,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                            borderSide: BorderSide.none,
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
+                          contentPadding: const EdgeInsets.symmetric(
+                            vertical: 12.0,
+                            horizontal: 16.0,
+                          ),
+                          errorText: _emailError,
+                        ),
+                        keyboardType: TextInputType.emailAddress,
+                        onChanged: _validateEmail,
+                      ),
+                    ),
                     AppLayout.spaceSmall,
                     if (_showPasswordField) ...[
                       AppLayout.spaceSmall,
@@ -143,6 +167,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: TextFormField(
+                          controller: _passwordController,
                           obscureText: _isObscure,
                           decoration: InputDecoration(
                             labelText: 'Password*',
@@ -170,8 +195,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 });
                               },
                             ),
+                            errorText: _passwordError,
                           ),
-                          keyboardType: TextInputType.visiblePassword,
+                          onChanged: _validatePassword,
                         ),
                       ),
                     ],
