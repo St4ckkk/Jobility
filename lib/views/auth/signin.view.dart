@@ -12,15 +12,15 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _isChecked = false;
-  bool _isObscure = true; // New boolean to manage password visibility
+  bool _isObscure = true; 
 
   void _navigateToSignIn(BuildContext context) {
-    Navigator.pushNamed(context, '/registration');
+    Navigator.pushNamed(context, '/signup');
   }
 
   void _navigateToForgotPassword(BuildContext context) {
     Navigator.pushNamed(
-        context, '/forgot-password'); // Add route for Forgot Password
+        context, '/forgot-password'); 
   }
 
   @override
@@ -186,7 +186,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       child: TextFormField(
                         decoration: InputDecoration(
-                          labelText: 'Email or Phone',
+                          labelText: 'Email or Phone*',
                           floatingLabelBehavior: FloatingLabelBehavior.auto,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8.0),
@@ -203,7 +203,6 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     AppLayout.spaceSmall,
-                    AppLayout.spaceSmall,
                     Container(
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -219,9 +218,9 @@ class _LoginPageState extends State<LoginPage> {
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                       child: TextFormField(
-                        obscureText: _isObscure, // Password visibility toggle
+                        obscureText: _isObscure,
                         decoration: InputDecoration(
-                          labelText: 'Password',
+                          labelText: 'Password*',
                           floatingLabelBehavior: FloatingLabelBehavior.auto,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8.0),

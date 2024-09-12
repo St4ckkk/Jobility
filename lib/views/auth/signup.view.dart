@@ -3,11 +3,26 @@ import '../../core/config/imports.dart';
 import '../../core/config/functions.dart';
 import 'package:flutter/gestures.dart';
 
-class RegistrationPage extends StatelessWidget {
+class RegistrationPage extends StatefulWidget {
   const RegistrationPage({super.key});
+
+  @override
+  _RegistrationPageState createState() => _RegistrationPageState();
+}
+
+class _RegistrationPageState extends State<RegistrationPage> {
+  bool _showPasswordField = false;
+  bool _isObscure = true;
+  final TextEditingController _emailController = TextEditingController();
 
   void _navigateToSignIn(BuildContext context) {
     Navigator.pushNamed(context, '/signin');
+  }
+
+  void _onAgreeAndJoinPressed() {
+    setState(() {
+      _showPasswordField = true;
+    });
   }
 
   @override
@@ -78,92 +93,94 @@ class RegistrationPage extends StatelessWidget {
                       ),
                     ),
                     AppLayout.spaceMedium,
-                    Text(
-                      'Email or Phone*',
-                      style: AppTypography.subtitleSmall.copyWith(
-                        color: AppColors.lightAccentColor,
-                      ),
-                    ),
-                    AppLayout.spaceSmall,
                     Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: const Color.fromARGB(255, 212, 209, 209)
-                                .withOpacity(0.2),
-                            spreadRadius: 2,
-                            blurRadius: 6,
-                            offset: const Offset(0, 3),
-                          ),
-                        ],
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      child: const TextField(
-                        decoration: InputDecoration(
-                          hintText: 'Enter your email or phone',
-                          border: InputBorder.none,
-                          contentPadding: EdgeInsets.symmetric(
-                              vertical: 12.0, horizontal: 16.0),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: const Color.fromARGB(255, 212, 209, 209)
+                                  .withOpacity(0.2),
+                              spreadRadius: 2,
+                              blurRadius: 6,
+                              offset: const Offset(0, 3),
+                            ),
+                          ],
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
-                        keyboardType: TextInputType.emailAddress,
-                      ),
-                    ),
-                    AppLayout.spaceMedium,
-                    Text.rich(
-                      TextSpan(
-                        text:
-                            'By clicking Agree & Join or Continue, you agree to the Jobility',
-                        style: AppTypography.caption.copyWith(
-                          color: AppColors.lightAccentColor,
+                        child: TextFormField(
+                          controller: _emailController,
+                          decoration: InputDecoration(
+                            labelText: 'Email or Phone*',
+                            floatingLabelBehavior: FloatingLabelBehavior.auto,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                              borderSide: BorderSide.none,
+                            ),
+                            filled: true,
+                            fillColor: Colors.white,
+                            contentPadding: const EdgeInsets.symmetric(
+                              vertical: 12.0,
+                              horizontal: 16.0,
+                            ),
+                          ),
+                          keyboardType: TextInputType.emailAddress,
+                        )),
+                    AppLayout.spaceSmall,
+                    if (_showPasswordField) ...[
+                      AppLayout.spaceSmall,
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: const Color.fromARGB(255, 212, 209, 209)
+                                  .withOpacity(0.2),
+                              spreadRadius: 2,
+                              blurRadius: 6,
+                              offset: const Offset(0, 3),
+                            ),
+                          ],
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
-                        children: [
-                          TextSpan(
-                            text: ' User Agreement',
-                            style: AppTypography.caption.copyWith(
-                              color: AppColors.primaryColor,
+                        child: TextFormField(
+                          obscureText: _isObscure,
+                          decoration: InputDecoration(
+                            labelText: 'Password*',
+                            floatingLabelBehavior: FloatingLabelBehavior.auto,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                              borderSide: BorderSide.none,
+                            ),
+                            filled: true,
+                            fillColor: Colors.white,
+                            contentPadding: const EdgeInsets.symmetric(
+                              vertical: 12.0,
+                              horizontal: 16.0,
+                            ),
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                _isObscure
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: AppColors.lightAccentColor,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _isObscure = !_isObscure;
+                                });
+                              },
                             ),
                           ),
-                          TextSpan(
-                            text: ', ',
-                            style: AppTypography.caption.copyWith(
-                              color: AppColors.lightAccentColor,
-                            ),
-                          ),
-                          TextSpan(
-                            text: 'Privacy Policy',
-                            style: AppTypography.caption.copyWith(
-                              color: AppColors.primaryColor,
-                            ),
-                          ),
-                          TextSpan(
-                            text: ', and ',
-                            style: AppTypography.caption.copyWith(
-                              color: AppColors.lightAccentColor,
-                            ),
-                          ),
-                          TextSpan(
-                            text: 'Cookie Policy',
-                            style: AppTypography.caption.copyWith(
-                              color: AppColors.primaryColor,
-                            ),
-                          ),
-                          TextSpan(
-                            text:
-                                '. For phone number signups we will send a verification code via SMS.',
-                            style: AppTypography.caption.copyWith(
-                              color: AppColors.lightAccentColor,
-                            ),
-                          ),
-                        ],
+                          keyboardType: TextInputType.visiblePassword,
+                        ),
                       ),
-                    ),
-                    AppLayout.spaceMedium,
+                    ],
+                    AppLayout.spaceSmall,
                     SizedBox(
                       width: double.infinity,
                       height: AppLayout.buttonHeightMedium,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: _onAgreeAndJoinPressed,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.primaryColor,
                           shape: const RoundedRectangleBorder(
@@ -183,9 +200,8 @@ class RegistrationPage extends StatelessWidget {
                       children: [
                         const Expanded(
                           child: Divider(
-                            color:
-                                AppColors.accentColor,
-                            thickness: 2, 
+                            color: AppColors.accentColor,
+                            thickness: 2,
                           ),
                         ),
                         Padding(
@@ -226,9 +242,8 @@ class RegistrationPage extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.lightColor,
                           shape: const RoundedRectangleBorder(
-                            borderRadius: AppLayout.borderRadiusLarge,
-                             side: BorderSide(color: AppColors.primaryColor)
-                          ),
+                              borderRadius: AppLayout.borderRadiusLarge,
+                              side: BorderSide(color: AppColors.primaryColor)),
                         ),
                       ),
                     ),
@@ -253,9 +268,8 @@ class RegistrationPage extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.lightColor,
                           shape: const RoundedRectangleBorder(
-                            borderRadius: AppLayout.borderRadiusLarge,
-                            side: BorderSide(color: AppColors.primaryColor)
-                          ),
+                              borderRadius: AppLayout.borderRadiusLarge,
+                              side: BorderSide(color: AppColors.primaryColor)),
                         ),
                       ),
                     ),

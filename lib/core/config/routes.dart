@@ -12,7 +12,7 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const RegistrationPage());
       case '/signin':
         return MaterialPageRoute(builder: (_) => const LoginPage());
-      case '/register':
+      case '/signup':
         return MaterialPageRoute(builder: (_) => const RegistrationPage());
       default:
         return MaterialPageRoute(builder: (_) => const HomePage());
