@@ -72,8 +72,8 @@ Widget _buildHeaderText(BuildContext context) {
       children: [
         Text(
           'Select a Job Category',
-          style: AppTypography.headlineLarge.copyWith(
-            fontSize: 35.0,
+          style: AppTypography.headlineMedium.copyWith(
+            fontSize: 32.0,
             color: AppColors.darkColor,
           ),
           textAlign: TextAlign.center,
@@ -81,7 +81,7 @@ Widget _buildHeaderText(BuildContext context) {
         AppLayout.spaceSmall,
         Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30.0),
-            child: Container(
+            child: SizedBox(
               width: 380.0,
               child: Text(
                 "Select whether you're seeking inclusive job opportunities or your organization is hiring skilled individuals with diverse abilities",
@@ -93,9 +93,9 @@ Widget _buildHeaderText(BuildContext context) {
               ),
             )),
         AppLayout.spaceLarge,
-        Container(
+        SizedBox(
           width: 350,
-          child: Divider(
+          child: const Divider(
             color: Color(0xFFD9D9D9),
             thickness: 1,
           ),
@@ -106,29 +106,81 @@ Widget _buildHeaderText(BuildContext context) {
           children: [
             Card(
               elevation: 0,
-              margin: EdgeInsets.all(10),
+              margin: const EdgeInsets.all(10),
               shape: RoundedRectangleBorder(
-                side: BorderSide(color: Color(0xFFD9D9D9), width: 1),
+                side: const BorderSide(color: Color(0xFFD9D9D9), width: 1),
                 borderRadius: BorderRadius.circular(10),
               ),
               color: Colors.white,
-              child: Container(
-                width: 150,
-                height: 200,
+              child: Stack(
+                children: [
+                  Positioned(
+                    top: 20,
+                    left: 0,
+                    right: 0,
+                    child: Center(
+                      child: Container(
+                        width: 50,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.primaryColor30,
+                        ),
+                        child: Center(
+                          child: Image.asset(
+                            AssetPaths.getImagePath('suitcase.png'),
+                            width: 20,
+                            height: 20,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 150,
+                    height: 200,
+                  ),
+                ],
               ),
             ),
-            SizedBox(width: 20),
+            const SizedBox(width: 20),
             Card(
               elevation: 0,
-              margin: EdgeInsets.all(10),
+              margin: const EdgeInsets.all(10),
               shape: RoundedRectangleBorder(
-                side: BorderSide(color: Color(0xFFD9D9D9), width: 1),
+                side: const BorderSide(color: Color(0xFFD9D9D9), width: 1),
                 borderRadius: BorderRadius.circular(10),
               ),
               color: Colors.white,
-              child: Container(
-                width: 150,
-                height: 200,
+              child: Stack(
+                children: [
+                  Positioned(
+                    top: 20,
+                    left: 0,
+                    right: 0,
+                    child: Center(
+                      child: Container(
+                        width: 50,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.orangeColor30,
+                        ),
+                        child: Center(
+                          child: Image.asset(
+                            AssetPaths.getImagePath('avatar.png'),
+                            width: 20,
+                            height: 20,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 150,
+                    height: 200,
+                  ),
+                ],
               ),
             ),
           ],
