@@ -136,6 +136,39 @@ Widget _buildHeaderText(BuildContext context) {
                       ),
                     ),
                   ),
+                  Positioned(
+                    top: 80,
+                    left: 0,
+                    right: 0,
+                    child: Center(
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            width: 100,
+                            child: Text(
+                              'Find an Job',
+                              style: AppTypography.subtitleSmall.copyWith(
+                                color: AppColors.darkColor,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          SizedBox(
+                            
+                            child: Text(
+                              'I want to find Job',
+                              style: AppTypography.caption.copyWith(
+                                fontSize: 12.0,
+                                color: AppColors.grayAccentColor,
+                              ),
+                              textAlign: TextAlign
+                                  .center,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                   SizedBox(
                     width: 150,
                     height: 200,
@@ -173,6 +206,39 @@ Widget _buildHeaderText(BuildContext context) {
                             height: 20,
                           ),
                         ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 80,
+                    left: 0,
+                    right: 0,
+                    child: Center(
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            width: 100,
+                            child: Text(
+                              'Find an Employee',
+                              style: AppTypography.subtitleSmall.copyWith(
+                                color: AppColors.darkColor,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 100, // adjust the width as needed
+                            child: Text(
+                              'I want to find Employees',
+                              style: AppTypography.caption.copyWith(
+                                fontSize: 12.0,
+                                color: AppColors.grayAccentColor,
+                              ),
+                              textAlign: TextAlign
+                                  .center, // add this to center the text
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),

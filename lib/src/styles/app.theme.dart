@@ -9,6 +9,7 @@ class AppColors {
   static final Color orangeColor30 = orangeColor.withOpacity(0.3);
   static const Color textColor = Color(0xFFFFFFFF);
   static const Color lightColor = Color(0xFFFFFFFF);
+  static const Color grayAccentColor = Color(0xFF858484);
 
   static const Color darkColor = Color(0xFF000000);
   static const Color darkPrimaryColor = Color(0xFF130160);
