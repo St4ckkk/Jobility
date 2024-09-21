@@ -9,3 +9,5 @@ export '../../views/auth/signup.view.dart';
 export '../../views/auth/signin.view.dart';
 export '../../views/auth/verification.view.dart';
 export '../../views/main.view.dart';
+export '../../widgets/custom_buttons.dart';
+export '../../widgets/custom_textFormField.dart';

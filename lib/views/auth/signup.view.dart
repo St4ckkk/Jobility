@@ -54,260 +54,260 @@ class _RegistrationPageState extends State<RegistrationPage> {
     return Scaffold(
       body: Stack(
         children: [
-          Positioned.fill(
-            child: Image.asset(
-              AssetPaths.getImagePath('registration-cover.jpg'),
-              fit: BoxFit.cover,
-            ),
+          _buildBackgroundImage(),
+          _buildHeader(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildBackgroundImage() {
+    return Positioned.fill(
+      child: Image.asset(
+        AssetPaths.getImagePath('registration-cover.jpg'),
+        fit: BoxFit.cover,
+      ),
+    );
+  }
+
+  Widget _buildHeader() {
+    return Align(
+      alignment: Alignment.topLeft,
+      child: Padding(
+        padding: AppLayout.marginLarge,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildLogo(),
+              AppLayout.spaceMedium,
+              _buildHeaderText(),
+              _buildSignInLink(),
+              AppLayout.spaceMedium,
+              _buildEmailFormField(),
+              if (_showPasswordField) ...[
+                AppLayout.spaceSmall,
+                _buildPasswordFormField(),
+              ],
+              AppLayout.spaceSmall,
+              _buildAgreeAndJoinButton(),
+              AppLayout.spaceSmall,
+              _buildOrDivider(),
+              AppLayout.spaceSmall,
+              _buildGoogleButton(),
+              AppLayout.spaceSmall,
+              _buildFacebookButton(),
+            ],
           ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: Padding(
-              padding: AppLayout.marginLarge,
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Jobility',
-                          style: AppTypography.headlineSmall.copyWith(
-                            color: AppColors.darkColor,
-                          ),
-                        ),
-                        AppLayout.spaceSmallWidth,
-                        Image.asset(
-                          AssetPaths.getImagePath('light-logo.png'),
-                          width: AppLayout.imageSmall,
-                          height: AppLayout.imageSmall,
-                          fit: BoxFit.contain,
-                          filterQuality: FilterQuality.high,
-                        ),
-                      ],
-                    ),
-                    AppLayout.spaceMedium,
-                    Text(
-                      'Join Jobility',
-                      style: AppTypography.subtitleLarge.copyWith(
-                        color: AppColors.darkColor,
-                      ),
-                    ),
-                    Text.rich(
-                      TextSpan(
-                        text: 'or ',
-                        style: AppTypography.bodySmall.copyWith(
-                          color: AppColors.lightAccentColor,
-                        ),
-                        children: [
-                          TextSpan(
-                            text: 'Sign in',
-                            style: AppTypography.caption.copyWith(
-                              color: AppColors.primaryColor,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () {
-                                Navigator.pushNamed(context, '/signin');
-                              },
-                          ),
-                        ],
-                      ),
-                    ),
-                    AppLayout.spaceMedium,
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: const Color.fromARGB(255, 212, 209, 209)
-                                .withOpacity(0.2),
-                            spreadRadius: 2,
-                            blurRadius: 6,
-                            offset: const Offset(0, 3),
-                          ),
-                        ],
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      child: TextFormField(
-                        controller: _emailController,
-                        decoration: InputDecoration(
-                          labelText: 'Email or Phone*',
-                          floatingLabelBehavior: FloatingLabelBehavior.auto,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                            borderSide: BorderSide.none,
-                          ),
-                          filled: true,
-                          fillColor: Colors.white,
-                          contentPadding: const EdgeInsets.symmetric(
-                            vertical: 12.0,
-                            horizontal: 16.0,
-                          ),
-                          errorText: _emailError,
-                        ),
-                        keyboardType: TextInputType.emailAddress,
-                        onChanged: _validateEmail,
-                      ),
-                    ),
-                    AppLayout.spaceSmall,
-                    if (_showPasswordField) ...[
-                      AppLayout.spaceSmall,
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              color: const Color.fromARGB(255, 212, 209, 209)
-                                  .withOpacity(0.2),
-                              spreadRadius: 2,
-                              blurRadius: 6,
-                              offset: const Offset(0, 3),
-                            ),
-                          ],
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        child: TextFormField(
-                          controller: _passwordController,
-                          obscureText: _isObscure,
-                          decoration: InputDecoration(
-                            labelText: 'Password*',
-                            floatingLabelBehavior: FloatingLabelBehavior.auto,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                              borderSide: BorderSide.none,
-                            ),
-                            filled: true,
-                            fillColor: Colors.white,
-                            contentPadding: const EdgeInsets.symmetric(
-                              vertical: 12.0,
-                              horizontal: 16.0,
-                            ),
-                            suffixIcon: IconButton(
-                              icon: Icon(
-                                _isObscure
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
-                                color: AppColors.lightAccentColor,
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  _isObscure = !_isObscure;
-                                });
-                              },
-                            ),
-                            errorText: _passwordError,
-                          ),
-                          onChanged: _validatePassword,
-                        ),
-                      ),
-                    ],
-                    AppLayout.spaceSmall,
-                    SizedBox(
-                      width: double.infinity,
-                      height: AppLayout.buttonHeightMedium,
-                      child: ElevatedButton(
-                        onPressed: _onAgreeAndJoinPressed,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.primaryColor,
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: AppLayout.borderRadiusLarge,
-                          ),
-                        ),
-                        child: Text(
-                          'Agree & Join',
-                          style: AppTypography.buttonText.copyWith(
-                            color: AppColors.lightColor,
-                          ),
-                        ),
-                      ),
-                    ),
-                    AppLayout.spaceSmall,
-                    Row(
-                      children: [
-                        const Expanded(
-                          child: Divider(
-                            color: AppColors.accentColor,
-                            thickness: 2,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Text(
-                            'or',
-                            style: AppTypography.caption.copyWith(
-                              color: AppColors.lightAccentColor,
-                            ),
-                          ),
-                        ),
-                        const Expanded(
-                          child: Divider(
-                            color: AppColors.accentColor,
-                            thickness: 2,
-                          ),
-                        ),
-                      ],
-                    ),
-                    AppLayout.spaceSmall,
-                    SizedBox(
-                      width: double.infinity,
-                      height: AppLayout.buttonHeightMedium,
-                      child: ElevatedButton.icon(
-                        onPressed: () {},
-                        icon: Image.asset(
-                          AssetPaths.getImagePath('google.png'),
-                          width: AppLayout.imageSmall,
-                          height: AppLayout.imageSmall,
-                          fit: BoxFit.contain,
-                        ),
-                        label: Text(
-                          'Continue with Google',
-                          style: AppTypography.buttonText.copyWith(
-                            color: AppColors.darkColor,
-                          ),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.lightColor,
-                          shape: const RoundedRectangleBorder(
-                              borderRadius: AppLayout.borderRadiusLarge,
-                              side: BorderSide(color: AppColors.primaryColor)),
-                        ),
-                      ),
-                    ),
-                    AppLayout.spaceSmall,
-                    SizedBox(
-                      width: double.infinity,
-                      height: AppLayout.buttonHeightMedium,
-                      child: ElevatedButton.icon(
-                        onPressed: () {},
-                        icon: Image.asset(
-                          AssetPaths.getImagePath('facebook.png'),
-                          width: AppLayout.imageSmall,
-                          height: AppLayout.imageSmall,
-                          fit: BoxFit.contain,
-                        ),
-                        label: Text(
-                          'Continue with Facebook',
-                          style: AppTypography.buttonText.copyWith(
-                            color: AppColors.darkColor,
-                          ),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.lightColor,
-                          shape: const RoundedRectangleBorder(
-                              borderRadius: AppLayout.borderRadiusLarge,
-                              side: BorderSide(color: AppColors.primaryColor)),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildLogo() {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          'Jobility',
+          style: AppTypography.headlineSmall.copyWith(
+            color: AppColors.darkColor,
+          ),
+        ),
+        AppLayout.spaceSmallWidth,
+        Image.asset(
+          AssetPaths.getImagePath('light-logo.png'),
+          width: AppLayout.imageSmall,
+          height: AppLayout.imageSmall,
+          fit: BoxFit.contain,
+          filterQuality: FilterQuality.high,
+        ),
+      ],
+    );
+  }
+
+  Widget _buildHeaderText() {
+    return Text(
+      'Join Jobility',
+      style: AppTypography.subtitleLarge.copyWith(
+        color: AppColors.darkColor,
+      ),
+    );
+  }
+
+  Widget _buildSignInLink() {
+    return Text.rich(
+      TextSpan(
+        text: 'or ',
+        style: AppTypography.bodySmall.copyWith(
+          color: AppColors.lightAccentColor,
+        ),
+        children: [
+          TextSpan(
+            text: 'Sign in',
+            style: AppTypography.caption.copyWith(
+              color: AppColors.primaryColor,
+              fontWeight: FontWeight.bold,
             ),
+            recognizer: TapGestureRecognizer()
+              ..onTap = () {
+                Navigator.pushNamed(context, '/signin');
+              },
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildEmailFormField() {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: const Color.fromARGB(255, 212, 209, 209).withOpacity(0.2),
+            spreadRadius: 2,
+            blurRadius: 6,
+            offset: const Offset(0, 3),
+          ),
+        ],
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      child: CustomTextFormField(
+        controller: _emailController,
+        labelText: 'Email or Phone*',
+        errorText: _emailError,
+        onChanged: _validateEmail,
+      ),
+    );
+  }
+
+  Widget _buildPasswordFormField() {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: const Color.fromARGB(255, 212, 209, 209).withOpacity(0.2),
+            spreadRadius: 2,
+            blurRadius: 6,
+            offset: const Offset(0, 3),
+          ),
+        ],
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      child: CustomTextFormField(
+        controller: _passwordController,
+        labelText: 'Password*',
+        obscureText: _isObscure,
+        errorText: _passwordError,
+        suffixIcon: GestureDetector(
+          onTap: () {
+            setState(() {
+              _isObscure = !_isObscure;
+            });
+          },
+          child: Icon(
+            _isObscure ? Icons.visibility_off : Icons.visibility,
+            color: AppColors.darkColor,
+          ),
+        ),
+        onChanged: _validatePassword,
+      ),
+    );
+  }
+
+  Widget _buildAgreeAndJoinButton() {
+    return SizedBox(
+      width: double.infinity,
+      height: AppLayout.buttonHeightMedium,
+      child: ElevatedButton(
+        onPressed: _onAgreeAndJoinPressed,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.primaryColor,
+          shape: const RoundedRectangleBorder(
+            borderRadius: AppLayout.borderRadiusLarge,
+          ),
+        ),
+        child: Text(
+          'Agree & Join',
+          style: AppTypography.buttonText.copyWith(
+            color: AppColors.lightColor,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildOrDivider() {
+    return Row(
+      children: [
+        const Expanded(
+          child: Divider(
+            color: AppColors.accentColor,
+            thickness: 2,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Text(
+            'or',
+            style: AppTypography.caption.copyWith(
+              color: AppColors.lightAccentColor,
+            ),
+          ),
+        ),
+        const Expanded(
+          child: Divider(
+            color: AppColors.accentColor,
+            thickness: 2,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildGoogleButton() {
+    return SizedBox(
+      width: double.infinity,
+      height: AppLayout.buttonHeightMedium,
+      child: ElevatedButton.icon(
+        onPressed: () {},
+        icon: Image.asset(
+          AssetPaths.getImagePath('google.png'),
+          width: AppLayout.imageSmall,
+          height: AppLayout.imageSmall,
+          fit: BoxFit.contain,
+        ),
+        label: Text(
+          'Continue with Google',
+          style: AppTypography.buttonText.copyWith(
+            color: AppColors.darkColor,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildFacebookButton() {
+    return SizedBox(
+      width: double.infinity,
+      height: AppLayout.buttonHeightMedium,
+      child: ElevatedButton.icon(
+        onPressed: () {},
+        icon: Image.asset(
+          AssetPaths.getImagePath('facebook.png'),
+          width: AppLayout.imageSmall,
+          height: AppLayout.imageSmall,
+          fit: BoxFit.contain,
+        ),
+        label: Text(
+          'Continue with Facebook',
+          style: AppTypography.buttonText.copyWith(
+            color: AppColors.darkColor,
+          ),
+        ),
       ),
     );
   }

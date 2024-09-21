@@ -66,7 +66,8 @@ class _CategoryPageState extends State<CategoryPage> {
 
   Widget _buildHeaderText(BuildContext context) {
     return Positioned(
-      top: MediaQuery.of(context).size.height * 0.1 + AppLayout.imageMedium + 20,
+      top:
+          MediaQuery.of(context).size.height * 0.1 + AppLayout.imageMedium + 20,
       left: 0,
       right: 0,
       child: Column(
@@ -121,12 +122,12 @@ class _CategoryPageState extends State<CategoryPage> {
                     side: BorderSide(
                       color: _isJobCardSelected
                           ? AppColors.primaryColor
-                          : Color(0xFFD9D9D9), 
+                          : Color(0xFFD9D9D9),
                       width: 2,
                     ),
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  color: Colors.white, 
+                  color: Colors.white,
                   child: Stack(
                     children: [
                       Positioned(
@@ -205,12 +206,12 @@ class _CategoryPageState extends State<CategoryPage> {
                     side: BorderSide(
                       color: _isEmployeeCardSelected
                           ? AppColors.primaryColor
-                          : Color(0xFFD9D9D9), 
+                          : Color(0xFFD9D9D9),
                       width: 2,
                     ),
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  color: Colors.white, 
+                  color: Colors.white,
                   child: Stack(
                     children: [
                       Positioned(
@@ -281,24 +282,16 @@ class _CategoryPageState extends State<CategoryPage> {
           SizedBox(
             width: 350,
             height: AppLayout.buttonHeightMedium,
-            child: ElevatedButton(
+            child: CustomButton(
               onPressed: () {
                 // Add your Continue button action here
               },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.primaryColor,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: AppLayout.borderRadiusLarge,
-                ),
-              ),
-              child: Text(
-                'Continue',
-                style: AppTypography.buttonText.copyWith(
-                  color: Colors.white,
-                ),
-              ),
+              label: 'Continue',
+              backgroundColor: AppColors.primaryColor,
+              textColor: Colors.white,
+              borderColor: AppColors.primaryColor,
             ),
-          ),
+          )
         ],
       ),
     );
