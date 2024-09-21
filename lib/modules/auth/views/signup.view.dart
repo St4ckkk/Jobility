@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import '../../core/config/imports.dart';
-import '../../core/config/functions.dart';
+import '../../../core/config/imports.dart';
+import '../../../core/config/functions.dart';
 
 class RegistrationPage extends StatefulWidget {
   const RegistrationPage({super.key});

@@ -2,24 +2,27 @@ import 'package:flutter/material.dart';
 import 'imports.dart';
 
 class AppRouter {
+  static final Map<String, WidgetBuilder> _routes = {
+    '/': (_) => const HomePage(),
+    '/splash': (_) => const SplashScreen(),
+    '/registration': (_) => const RegistrationPage(),
+    '/signin': (_) => const LoginPage(),
+    '/signup': (_) => const RegistrationPage(),
+    '/verification': (_) => const ProfileSetupPage(),
+    '/roles': (_) => const RolePage(),
+  };
+
+  static final Map<String, WidgetBuilder> _authRoutes = {
+    '/signin': (_) => const LoginPage(),
+    '/signup': (_) => const RegistrationPage(),
+    '/verification': (_) => const ProfileSetupPage(),
+  };
+
   static Route<dynamic> generateRoute(RouteSettings settings) {
-    switch (settings.name) {
-      case '/':
-        return MaterialPageRoute(builder: (_) => const HomePage());
-      case '/splash':
-        return MaterialPageRoute(builder: (_) => const SplashScreen());
-      case '/registration':
-        return MaterialPageRoute(builder: (_) => const RegistrationPage());
-      case '/signin':
-        return MaterialPageRoute(builder: (_) => const LoginPage());
-      case '/signup':
-        return MaterialPageRoute(builder: (_) => const RegistrationPage());
-      case '/verification':
-        return MaterialPageRoute(builder: (_) => const ProfileSetupPage());
-      case '/roles':
-        return MaterialPageRoute(builder: (_) => const RolePage());
-      default:
-        return MaterialPageRoute(builder: (_) => const HomePage());
+    if (_authRoutes.containsKey(settings.name)) {
+      return MaterialPageRoute(builder: _authRoutes[settings.name]!);
+    } else {
+      return MaterialPageRoute(builder: _routes[settings.name] ?? (_) => const HomePage());
     }
   }
 }

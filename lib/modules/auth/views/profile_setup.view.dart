@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../core/config/imports.dart';
-import '../../core/config/functions.dart';
+import '../../../../core/config/imports.dart';
+import '../../../../core/config/functions.dart';
 import 'package:flutter/gestures.dart';
 
 class ProfileSetupPage extends StatefulWidget {
