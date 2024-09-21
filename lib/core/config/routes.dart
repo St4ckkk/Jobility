@@ -23,7 +23,7 @@ class AppRouter {
     '/signup': (_) => const RegistrationPage(),
     '/profileSetup': (_) => const ProfileSetupPage(),
     '/roles': (_) => const RolePage(),
-    '/expertise' : (_) => const ExpertiseSelectionPage(),
+    '/expertise' : (_) => ExpertiseSelectionPage(),
   };
 
   static Route<dynamic> generateRoute(RouteSettings settings) {

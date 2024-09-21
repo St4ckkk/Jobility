@@ -16,3 +16,4 @@ export '../../modules/main.view.dart';
 
 export '../../widgets/custom_buttons.dart';
 export '../../widgets/custom_textFormField.dart';
+export '../../widgets/custom_checkBoxes.dart';
