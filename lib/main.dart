@@ -23,7 +23,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRouter.defaultRoute,
+      initialRoute: '/expertise',
       onGenerateRoute: AppRouter.generateRoute,
     );
   }

@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../config/imports.dart';
 
 class AppRouter {
-  static String _defaultRoute = '/splash';
+  static String _defaultRoute = '/signup';
 
   static String get defaultRoute => _defaultRoute;
 
@@ -14,14 +14,16 @@ class AppRouter {
     '/registration': (_) => const RegistrationPage(),
     '/signin': (_) => const LoginPage(),
     '/signup': (_) => const RegistrationPage(),
-    '/verification': (_) => const ProfileSetupPage(),
+    '/profileSetup': (_) => const ProfileSetupPage(),
     '/roles': (_) => const RolePage(),
   };
 
   static final Map<String, WidgetBuilder> _authRoutes = {
     '/signin': (_) => const LoginPage(),
     '/signup': (_) => const RegistrationPage(),
-    '/verification': (_) => const ProfileSetupPage(),
+    '/profileSetup': (_) => const ProfileSetupPage(),
+    '/roles': (_) => const RolePage(),
+    '/expertise' : (_) => const ExpertiseSelectionPage(),
   };
 
   static Route<dynamic> generateRoute(RouteSettings settings) {

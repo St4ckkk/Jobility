@@ -44,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
                     _buildHeader(),
                     AppLayout.spaceMedium,
                     _buildSignInText(),
-                    AppLayout.spaceSmall,
+                    AppLayout.spaceMedium,
                     _buildSocialMediaButtons(),
                     AppLayout.spaceMedium,
                     _buildDivider(),
@@ -91,11 +91,38 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _buildSignInText() {
-    return Text(
-      'Sign in',
-      style: AppTypography.subtitleLarge.copyWith(
-        color: AppColors.darkColor,
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Sign in',
+          style: AppTypography.subtitleLarge.copyWith(
+            color: AppColors.darkColor,
+          ),
+        ),
+        RichText(
+          text: TextSpan(
+            text: 'or Join ',
+            style: AppTypography.caption.copyWith(
+              color: AppColors.lightAccentColor,
+              fontWeight: FontWeight.bold
+            ),
+            children: [
+              TextSpan(
+                text: 'Jobility',
+                style: AppTypography.caption.copyWith(
+                  color: AppColors.primaryColor,
+                  fontWeight: FontWeight.bold,
+                ),
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () {
+                    Navigator.pushNamed(context, '/signup');
+                  },
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 
