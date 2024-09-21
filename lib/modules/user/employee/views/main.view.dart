@@ -90,7 +90,7 @@ class _EmployeeDashboardState extends State<EmployeeDashboard> {
   Widget _searchBar() {
     return Container(
       height: 45.0,
-      width: 250.0,
+      width: 1000.0,
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       decoration: BoxDecoration(
         color: Colors.white,
