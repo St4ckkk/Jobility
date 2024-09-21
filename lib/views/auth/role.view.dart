@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:jobility_app/core/config/functions.dart';
 import 'package:jobility_app/core/config/imports.dart';
 
-class CategoryPage extends StatefulWidget {
-  const CategoryPage({super.key});
+class RolePage extends StatefulWidget {
+  const RolePage({super.key});
 
   @override
-  State<CategoryPage> createState() => _CategoryPageState();
+  State<RolePage> createState() => _RolePageState();
 }
 
-class _CategoryPageState extends State<CategoryPage> {
+class _RolePageState extends State<RolePage> {
   bool _isJobCardSelected = false;
   bool _isEmployeeCardSelected = false;
 
@@ -97,9 +97,9 @@ class _CategoryPageState extends State<CategoryPage> {
             ),
           ),
           AppLayout.spaceLarge,
-          SizedBox(
+          const SizedBox(
             width: 350,
-            child: const Divider(
+            child: Divider(
               color: Color(0xFFD9D9D9),
               thickness: 1,
             ),
@@ -122,7 +122,7 @@ class _CategoryPageState extends State<CategoryPage> {
                     side: BorderSide(
                       color: _isJobCardSelected
                           ? AppColors.primaryColor
-                          : Color(0xFFD9D9D9),
+                          : const Color(0xFFD9D9D9),
                       width: 2,
                     ),
                     borderRadius: BorderRadius.circular(10),
@@ -206,7 +206,7 @@ class _CategoryPageState extends State<CategoryPage> {
                     side: BorderSide(
                       color: _isEmployeeCardSelected
                           ? AppColors.primaryColor
-                          : Color(0xFFD9D9D9),
+                          : const Color(0xFFD9D9D9),
                       width: 2,
                     ),
                     borderRadius: BorderRadius.circular(10),

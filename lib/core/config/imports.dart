@@ -3,7 +3,7 @@ export '../../src/styles/app.theme.dart';
 export '../../src/styles/app.typography.dart';
 export '../utils/Validator.dart';
 export '../utils/Forms/LoginForm.dart';
-export '../../views/auth/category.view.dart';
+export '../../views/auth/role.view.dart';
 export '../../views/splash.view.dart';
 export '../../views/auth/signup.view.dart';
 export '../../views/auth/signin.view.dart';
