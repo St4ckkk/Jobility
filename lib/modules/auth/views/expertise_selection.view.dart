@@ -13,21 +13,30 @@ class _ExpertiseSelectionPageState extends State<ExpertiseSelectionPage> {
     'Project Manager': false,
     'HR Specialist': false,
     'Data Scientist': false,
+    'UX Designer': false,
+    'UI Designer': false,
+    'Business Analyst': false,
+    'Digital Marketer': false,
+    'Content Writer': false,
+    'Sales Specialist': false,
+    'Customer Support': false,
   };
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: AppLayout.marginLarge, // Add consistent padding
+        padding: AppLayout.marginLarge, 
         child: Column(
           children: [
             _buildBackButton(),
             _buildHeaderText(),
-            AppLayout.spaceLarge, // Add space between header and expertise list
+            AppLayout.spaceMedium, 
             Expanded(
-                child:
-                    _buildExpertiseSelection()), // Use expanded for proper layout handling
+              child: _buildExpertiseSelection(),
+            ),
+            AppLayout.spaceMedium, 
+            _buildContinueButton(),
           ],
         ),
       ),
@@ -43,7 +52,7 @@ class _ExpertiseSelectionPageState extends State<ExpertiseSelectionPage> {
             child: const Icon(Icons.arrow_back),
           ),
           onPressed: () {
-            Navigator.pop(context); // Navigate back to previous page
+            Navigator.pop(context); 
           },
         ),
         AppLayout.spaceSmallWidth,
@@ -63,7 +72,7 @@ class _ExpertiseSelectionPageState extends State<ExpertiseSelectionPage> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        AppLayout.spaceLarge,
+        AppLayout.spaceMedium,
         Container(
           child: Text(
             'What is your Field of Expertise?',
@@ -107,6 +116,20 @@ class _ExpertiseSelectionPageState extends State<ExpertiseSelectionPage> {
       }).toList(),
     );
   }
+
+  Widget _buildContinueButton() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: CustomButton(
+        onPressed: () {
+          print("Continue button pressed");
+        },
+        label: 'Continue',
+        backgroundColor: AppColors.primaryColor,
+        textColor: Colors.white,
+      ),
+    );
+  }
 }
 
 class ExpertiseCard extends StatefulWidget {
@@ -137,7 +160,9 @@ class _ExpertiseCardState extends State<ExpertiseCard> {
         width: double.infinity,
         decoration: BoxDecoration(
           border: Border.all(
-            color: widget.isSelected ? AppColors.primaryColor : AppColors.accentColor,
+            color: widget.isSelected
+                ? AppColors.primaryColor
+                : AppColors.accentColor,
           ),
           borderRadius: BorderRadius.circular(8.0),
         ),
