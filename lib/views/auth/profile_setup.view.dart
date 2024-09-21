@@ -3,14 +3,14 @@ import '../../core/config/imports.dart';
 import '../../core/config/functions.dart';
 import 'package:flutter/gestures.dart';
 
-class VerificationPage extends StatefulWidget {
-  const VerificationPage({super.key});
+class ProfileSetupPage extends StatefulWidget {
+  const ProfileSetupPage({super.key});
 
   @override
-  _VerificationPageState createState() => _VerificationPageState();
+  _ProfileSetupPageState createState() => _ProfileSetupPageState();
 }
 
-class _VerificationPageState extends State<VerificationPage> {
+class _ProfileSetupPageState extends State<ProfileSetupPage> {
   bool _isChecked = false;
 
   void _navigateToSignIn(BuildContext context) {
