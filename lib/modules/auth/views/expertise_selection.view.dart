@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:jobility_app/core/config/imports.dart';
 
 class ExpertiseSelectionPage extends StatefulWidget {
+  const ExpertiseSelectionPage({super.key});
+
   @override
   _ExpertiseSelectionPageState createState() => _ExpertiseSelectionPageState();
 }
@@ -138,11 +140,11 @@ class ExpertiseCard extends StatefulWidget {
   final Function(bool) onSelected;
 
   const ExpertiseCard({
-    Key? key,
+    super.key,
     required this.expertise,
     required this.isSelected,
     required this.onSelected,
-  }) : super(key: key);
+  });
 
   @override
   _ExpertiseCardState createState() => _ExpertiseCardState();

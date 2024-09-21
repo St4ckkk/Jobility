@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../config/imports.dart';
+import '../imports.dart';
 
 class AppRouter {
   static String _defaultRoute = '/signup';
@@ -8,6 +8,7 @@ class AppRouter {
   static String get defaultRoute => _defaultRoute;
 
   static set defaultRoute(String value) => _defaultRoute = value;
+
   static final Map<String, WidgetBuilder> _routes = {
     '/': (_) => const HomePage(),
     '/splash': (_) => const SplashScreen(),
@@ -16,6 +17,7 @@ class AppRouter {
     '/signup': (_) => const RegistrationPage(),
     '/profileSetup': (_) => const ProfileSetupPage(),
     '/roles': (_) => const RolePage(),
+    'employeeDashboard': (_) => const EmployeeDashboard()
   };
 
   static final Map<String, WidgetBuilder> _authRoutes = {
@@ -23,13 +25,19 @@ class AppRouter {
     '/signup': (_) => const RegistrationPage(),
     '/profileSetup': (_) => const ProfileSetupPage(),
     '/roles': (_) => const RolePage(),
-    '/expertise' : (_) => ExpertiseSelectionPage(),
+    '/expertise': (_) => ExpertiseSelectionPage(),
+  };
+
+  static final Map<String, WidgetBuilder> _employeeRoutes = {
+    '/employeeDashboard': (_) => const EmployeeDashboard(),
   };
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     _storeCurrentRoute(settings.name);
     if (_authRoutes.containsKey(settings.name)) {
       return MaterialPageRoute(builder: _authRoutes[settings.name]!);
+    } else if (_employeeRoutes.containsKey(settings.name)) {
+      return MaterialPageRoute(builder: _employeeRoutes[settings.name]!);
     } else {
       return MaterialPageRoute(
           builder: _routes[settings.name] ?? (_) => const HomePage());
