@@ -11,6 +11,8 @@ export '../../modules/auth/views/signin.view.dart';
 export '../../modules/auth/views/profile_setup.view.dart';
 export '../../modules/auth/views/expertise_selection.view.dart';
 export '../../modules/user/employee/views/main.view.dart';
+export '../../modules/user/employee/views/jobs/featured.view.dart';
+export '../../modules/user/employee/views/jobs/recommend.view.dart';
 
 export '../../modules/splash.view.dart';
 export '../../modules/main.view.dart';

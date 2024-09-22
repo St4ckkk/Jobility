@@ -49,19 +49,31 @@ class _EmployeeDashboardState extends State<EmployeeDashboard> {
     {
       'label': 'Remote Job',
       'count': '44.5k',
-      'color': Colors.lightBlueAccent,
+      'gradient': LinearGradient(
+        colors: [Colors.blue.shade900, Colors.blueAccent.shade400],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      ),
       'icon': Icons.work_outline,
     },
     {
       'label': 'Full Time',
       'count': '66.8k',
-      'color': Colors.purpleAccent,
+      'gradient': LinearGradient(
+        colors: [Colors.purple.shade900, Colors.purpleAccent.shade400],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      ),
       'icon': Icons.schedule,
     },
     {
       'label': 'Part Time',
       'count': '38.9k',
-      'color': Colors.orangeAccent,
+      'gradient': LinearGradient(
+        colors: [Colors.orange.shade900, Colors.orangeAccent.shade400],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      ),
       'icon': Icons.timer,
     },
   ];
@@ -81,13 +93,17 @@ class _EmployeeDashboardState extends State<EmployeeDashboard> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _jobCategory(),
-            const SizedBox(height: 30),
-            _featuredJobsSection(), // Add the featured jobs section here
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _jobCategory(),
+              const SizedBox(height: 30),
+              FeaturedJobsView(featuredJobs: featuredJobs),
+              const SizedBox(height: 30),
+              RecommendedJobs(),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: CustomBottomBar(
@@ -105,8 +121,10 @@ class _EmployeeDashboardState extends State<EmployeeDashboard> {
           padding: const EdgeInsets.only(top: 20.0),
           child: Text(
             'Find Your Job',
-            style: AppTypography.headlineSmall.copyWith(
-              color: AppColors.darkColor,
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
             ),
           ),
         ),
@@ -118,7 +136,7 @@ class _EmployeeDashboardState extends State<EmployeeDashboard> {
               child: JobCategoryCard(
                 label: jobCategories[0]['label'],
                 count: jobCategories[0]['count'],
-                color: jobCategories[0]['color'],
+                gradient: jobCategories[0]['gradient'], // Pass gradient
                 icon: jobCategories[0]['icon'],
                 cardHeight: 250.0,
               ),
@@ -130,7 +148,7 @@ class _EmployeeDashboardState extends State<EmployeeDashboard> {
                   JobCategoryCard(
                     label: jobCategories[1]['label'],
                     count: jobCategories[1]['count'],
-                    color: jobCategories[1]['color'],
+                    gradient: jobCategories[1]['gradient'], // Pass gradient
                     icon: jobCategories[1]['icon'],
                     cardHeight: 120.0,
                   ),
@@ -138,7 +156,7 @@ class _EmployeeDashboardState extends State<EmployeeDashboard> {
                   JobCategoryCard(
                     label: jobCategories[2]['label'],
                     count: jobCategories[2]['count'],
-                    color: jobCategories[2]['color'],
+                    gradient: jobCategories[2]['gradient'], // Pass gradient
                     icon: jobCategories[2]['icon'],
                     cardHeight: 120.0,
                   ),
@@ -152,50 +170,4 @@ class _EmployeeDashboardState extends State<EmployeeDashboard> {
   }
 
   // Featured Jobs Section
-  Widget _featuredJobsSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Featured Jobs',
-              style: AppTypography.headlineSmall.copyWith(
-                color: AppColors.darkColor,
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                // Navigate to see all jobs page
-              },
-              child: const Text(
-                'See all',
-                style: TextStyle(color: AppColors.lightAccentColor),
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 10),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: featuredJobs.map((job) {
-              return Padding(
-                padding: const EdgeInsets.only(right: 12.0),
-                child: FeaturedJobCard(
-                  companyName: job['companyName'],
-                  jobTitle: job['jobTitle'],
-                  salary: job['salary'],
-                  location: job['location'],
-                  jobTags: List<String>.from(job['jobTags']),
-                  logoPath: job['logoPath'],
-                ),
-              );
-            }).toList(),
-          ),
-        ),
-      ],
-    );
-  }
 }

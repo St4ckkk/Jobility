@@ -3,18 +3,18 @@ import 'package:flutter/material.dart';
 class JobCategoryCard extends StatelessWidget {
   final String label;
   final String count;
-  final Color color;
+  final LinearGradient gradient;
   final IconData icon;
   final double cardHeight; // Add cardHeight parameter
 
   const JobCategoryCard({
-    Key? key,
+    super.key,
     required this.label,
     required this.count,
-    required this.color,
+    required this.gradient,
     required this.icon,
     this.cardHeight = 100.0,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class JobCategoryCard extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.8,
       height: cardHeight,
       decoration: BoxDecoration(
-        color: color,
+        gradient: gradient,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(

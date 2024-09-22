@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:jobility_app/core/config/functions.dart';
 
@@ -9,7 +11,7 @@ class FeaturedJobCard extends StatelessWidget {
   final List<String> jobTags;
   final String logoPath;
 
-  const FeaturedJobCard({
+  const FeaturedJobCard({super.key, 
     required this.companyName,
     required this.jobTitle,
     required this.salary,
@@ -30,7 +32,7 @@ class FeaturedJobCard extends StatelessWidget {
           image: AssetImage(AssetPaths.getImagePath('group.png')),
           fit: BoxFit.cover,
           colorFilter: ColorFilter.mode(randomColor, BlendMode.colorBurn),
-          opacity: 0.3
+          opacity: 0.1,
         ),
       ),
       child: Column(
@@ -47,35 +49,42 @@ class FeaturedJobCard extends StatelessWidget {
                 child: Text(
                   jobTitle,
                   style: TextStyle(
-                    fontSize: 18.0,
+                    fontSize: 20.0,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
                 ),
               ),
+              Icon(
+                Icons.bookmark_add,
+                size: 24.0,
+                color: Colors.white.withOpacity(0.5),
+              )
             ],
           ),
           SizedBox(height: 12),
           Text(
             companyName,
-            style: TextStyle(color: Colors.white70),
+            style: TextStyle(color: Colors.white70, fontSize: 16.0),
           ),
           SizedBox(height: 12),
           Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: jobTags.map((tag) => _buildTag(tag)).toList(),
           ),
-          SizedBox(height: 12),
+          SizedBox(height: 16),
           Text(
             salary,
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 16.0,
+              fontSize: 18.0,
               color: Colors.white,
             ),
           ),
+          SizedBox(height: 4),
           Text(
             location,
-            style: TextStyle(color: Colors.white70),
+            style: TextStyle(color: Colors.white70, fontSize: 14.0),
           ),
         ],
       ),
