@@ -1,6 +1,6 @@
-export '../../styles/app.layout.dart';
-export '../../styles/app.theme.dart';
-export '../../styles/app.typography.dart';
+export '../../src/styles/app.layout.dart';
+export '../../src/styles/app.theme.dart';
+export '../../src/styles/app.typography.dart';
 
 export '../utils/Validator.dart';
 export '../utils/Forms/LoginForm.dart';
@@ -21,3 +21,4 @@ export '../../widgets/custom_checkBoxes.dart';
 export '../../widgets/custom_appBar.dart';
 export '../../widgets/custom_bottomBar.dart';
 export '../../widgets/custom_JobCategoryCard.dart';
+export '../../widgets/custom_jobCard.dart';

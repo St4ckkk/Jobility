@@ -16,6 +16,15 @@ class AppColors {
 
   static const Color lightAccentColor = Color(0xFF524B6B);
   static const Color accentColor = Color(0xFFD9D9D9);
+
+  static const List<Color> cardColors = [
+    Color(0xFF416AB9), // Darker blue
+    Color(0xFF0066CC), // Darker cyan-blue
+    Color(0xFFE65000), // Darker orange
+    Color.fromARGB(255, 22, 21, 24), // Darker purple
+    Color(0xFFB3B3B3), // Darker grey
+    Color(0xFF345399), // Darker indigo
+  ];
 }
 
 ThemeData appTheme() {
