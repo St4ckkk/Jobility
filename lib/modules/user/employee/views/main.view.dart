@@ -136,7 +136,7 @@ class _EmployeeDashboardState extends State<EmployeeDashboard> {
               child: JobCategoryCard(
                 label: jobCategories[0]['label'],
                 count: jobCategories[0]['count'],
-                gradient: jobCategories[0]['gradient'], // Pass gradient
+                gradient: jobCategories[0]['gradient'], 
                 icon: jobCategories[0]['icon'],
                 cardHeight: 250.0,
               ),
@@ -148,7 +148,7 @@ class _EmployeeDashboardState extends State<EmployeeDashboard> {
                   JobCategoryCard(
                     label: jobCategories[1]['label'],
                     count: jobCategories[1]['count'],
-                    gradient: jobCategories[1]['gradient'], // Pass gradient
+                    gradient: jobCategories[1]['gradient'], 
                     icon: jobCategories[1]['icon'],
                     cardHeight: 120.0,
                   ),
@@ -156,7 +156,7 @@ class _EmployeeDashboardState extends State<EmployeeDashboard> {
                   JobCategoryCard(
                     label: jobCategories[2]['label'],
                     count: jobCategories[2]['count'],
-                    gradient: jobCategories[2]['gradient'], // Pass gradient
+                    gradient: jobCategories[2]['gradient'], 
                     icon: jobCategories[2]['icon'],
                     cardHeight: 120.0,
                   ),
