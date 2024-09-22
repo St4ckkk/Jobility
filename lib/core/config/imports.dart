@@ -20,3 +20,4 @@ export '../../widgets/custom_textFormField.dart';
 export '../../widgets/custom_checkBoxes.dart';
 export '../../widgets/custom_appBar.dart';
 export '../../widgets/custom_bottomBar.dart';
+export '../../widgets/custom_JobCategoryCard.dart';

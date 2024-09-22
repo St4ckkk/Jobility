@@ -5,13 +5,17 @@ class CustomBottomBar extends StatefulWidget {
   final int currentIndex;
   final Function(int) onTap;
   final double height;
+  final double iconHeight;
+  final double iconWidth;
 
-  const CustomBottomBar(
-      {Key? key,
-      required this.currentIndex,
-      required this.onTap,
-      this.height = 70.0})
-      : super(key: key);
+  const CustomBottomBar({
+    Key? key,
+    required this.currentIndex,
+    required this.onTap,
+    this.height = 70.0,
+    this.iconHeight = 30.0,
+    this.iconWidth = 30.0,
+  }) : super(key: key);
 
   @override
   State<CustomBottomBar> createState() => _CustomBottomBarState();
@@ -33,7 +37,7 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
             color: Colors.black.withOpacity(0.1),
             spreadRadius: 1,
             blurRadius: 5,
-            offset: const Offset(0, -3), // Shadow position
+            offset: const Offset(0, -3), 
           ),
         ],
       ),
@@ -46,27 +50,12 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
           type: BottomNavigationBarType.fixed,
           currentIndex: widget.currentIndex,
           onTap: widget.onTap,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.group),
-              label: 'My Network',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.add_box),
-              label: 'Post',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.notifications),
-              label: 'Notifications',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.work),
-              label: 'Jobs',
-            ),
+          items: [
+            _createItem(Icons.home, 'Home'),
+            _createItem(Icons.group, 'My Network'),
+            _createItem(Icons.add_box, 'Post'),
+            _createItem(Icons.notifications, 'Notifications'),
+            _createItem(Icons.work, 'Jobs'),
           ],
           selectedItemColor: AppColors.primaryColor,
           unselectedItemColor: AppColors.grayAccentColor,
@@ -75,6 +64,17 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
           elevation: 0,
         ),
       ),
+    );
+  }
+
+  BottomNavigationBarItem _createItem(IconData icon, String label) {
+    return BottomNavigationBarItem(
+      icon: Container(
+        width: widget.iconWidth,
+        height: widget.iconHeight,
+        child: Icon(icon, size: widget.iconHeight),
+      ),
+      label: label,
     );
   }
 }

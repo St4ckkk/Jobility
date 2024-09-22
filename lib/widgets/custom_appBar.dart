@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:jobility_app/core/config/functions.dart';
 import '../core/config/imports.dart';
 
-
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
       leading: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(5.0),
         child: _avatar(),
       ),
-      title: _searchBar(),
+      title: _searchBar(context),
       actions: [
         IconButton(
           icon: Image.asset(
@@ -70,10 +69,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
-  Widget _searchBar() {
+  Widget _searchBar(BuildContext context) {
     return Container(
       height: 45.0,
-      width: 1000.0,
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       decoration: BoxDecoration(
         color: Colors.white,
