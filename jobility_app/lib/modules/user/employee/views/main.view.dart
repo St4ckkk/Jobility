@@ -87,7 +87,7 @@ class _EmployeeDashboardState extends State<EmployeeDashboard> {
           padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
           child: Transform.translate(
             offset: const Offset(0, 16.0),
-            child: CustomAppBar(),
+            child: const CustomAppBar(),
           ),
         ),
       ),
