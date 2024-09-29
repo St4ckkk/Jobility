@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:jobility_app/modules/main.view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'core/config/routes/routes.dart';
+import 'core/config/routes/router.dart';
 import 'package:firebase_core/firebase_core.dart';
 import './config/firebase_options.dart';
-
-// ...
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,10 +28,11 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return GetMaterialApp( 
       debugShowCheckedModeBanner: false,
-      initialRoute: '/signup',
-      onGenerateRoute: AppRouter.generateRoute,
+      initialRoute: AppRouter.defaultRoute,
+      getPages: AppRouter.routes, 
+      home: const HomePage(), 
     );
   }
 }

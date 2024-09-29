@@ -1,7 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../core/config/imports.dart';
 import '../../../core/config/functions.dart';
+import '../controllers/auth_controllers.dart';
 
 class RegistrationPage extends StatefulWidget {
   const RegistrationPage({super.key});
@@ -11,42 +13,9 @@ class RegistrationPage extends StatefulWidget {
 }
 
 class _RegistrationPageState extends State<RegistrationPage> {
-  bool _showPasswordField = false;
-  bool _isObscure = true;
-  String? _emailError;
-  String? _passwordError;
+  final AuthController _authController = Get.put(AuthController());
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final LoginForm _loginForm = LoginForm();
-
-  void _validateEmail(String value) {
-    setState(() {
-      _loginForm.validate(value, _passwordController.text);
-      _emailError = _loginForm.errors()['email'];
-
-
-      _showPasswordField = _emailError == null;
-    });
-  }
-
-  void _validatePassword(String value) {
-    setState(() {
-      _loginForm.validate(_emailController.text, value);
-      _passwordError = _loginForm.errors()['password'];
-    });
-  }
-
-  void _onAgreeAndJoinPressed() {
-    setState(() {
-      _loginForm.validate(_emailController.text, _passwordController.text);
-      _emailError = _loginForm.errors()['email'];
-      _passwordError = _loginForm.errors()['password'];
-
-      if (_emailError == null && _passwordError == null) {
-        Navigator.pushNamed(context, '/verification');
-      }
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,10 +53,16 @@ class _RegistrationPageState extends State<RegistrationPage> {
               _buildSignInLink(),
               AppLayout.spaceMedium,
               _buildEmailFormField(),
-              if (_showPasswordField) ...[
-                AppLayout.spaceSmall,
-                _buildPasswordFormField(),
-              ],
+              Obx(() {
+                return _authController.showPasswordField.value
+                    ? Column(
+                        children: [
+                          AppLayout.spaceSmall,
+                          _buildPasswordFormField(),
+                        ],
+                      )
+                    : SizedBox.shrink();
+              }),
               AppLayout.spaceSmall,
               _buildAgreeAndJoinButton(),
               AppLayout.spaceSmall,
@@ -159,7 +134,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
     );
   }
 
-  Widget _buildEmailFormField() {
+  Widget _buildFormContainer(Widget child) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -173,47 +148,52 @@ class _RegistrationPageState extends State<RegistrationPage> {
         ],
         borderRadius: BorderRadius.circular(8.0),
       ),
-      child: CustomTextFormField(
-        controller: _emailController,
-        labelText: 'Email or Phone*',
-        errorText: _emailError,
-        onChanged: _validateEmail,
-      ),
+      child: child,
     );
   }
 
-  Widget _buildPasswordFormField() {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: const Color.fromARGB(255, 212, 209, 209).withOpacity(0.2),
-            spreadRadius: 2,
-            blurRadius: 6,
-            offset: const Offset(0, 3),
-          ),
-        ],
-        borderRadius: BorderRadius.circular(8.0),
-      ),
-      child: CustomTextFormField(
-        controller: _passwordController,
-        labelText: 'Password*',
-        obscureText: _isObscure,
-        errorText: _passwordError,
-        suffixIcon: GestureDetector(
-          onTap: () {
-            setState(() {
-              _isObscure = !_isObscure;
-            });
+  Widget _buildEmailFormField() {
+    return Obx(() {
+      return _buildFormContainer(
+        CustomTextFormField(
+          controller: _emailController,
+          labelText: 'Email or Phone*',
+          errorText: _authController.emailError.value.isEmpty
+              ? null
+              : _authController.emailError.value, // Display error
+          onChanged: (value) {
+            _authController.validateEmail(value); // Call validation on change
           },
-          child: Icon(
-            _isObscure ? Icons.visibility_off : Icons.visibility,
-            color: AppColors.darkColor,
-          ),
         ),
-        onChanged: _validatePassword,
-      ),
+      );
+    });
+  }
+
+  Widget _buildPasswordFormField() {
+    return _buildFormContainer(
+      Obx(() {
+        return CustomTextFormField(
+          controller: _passwordController,
+          labelText: 'Password*',
+          obscureText: _authController.isObscure.value,
+          errorText: _authController.passwordError.value.isEmpty
+              ? null
+              : _authController.passwordError.value, // Display password error
+          suffixIcon: GestureDetector(
+            onTap: _authController.togglePasswordVisibility,
+            child: Icon(
+              _authController.isObscure.value
+                  ? Icons.visibility_off
+                  : Icons.visibility,
+              color: AppColors.darkColor,
+            ),
+          ),
+          onChanged: (value) {
+            _authController
+                .validatePassword(value); // Call password validation on change
+          },
+        );
+      }),
     );
   }
 
@@ -237,6 +217,21 @@ class _RegistrationPageState extends State<RegistrationPage> {
         ),
       ),
     );
+  }
+
+  void _onAgreeAndJoinPressed() async {
+    // Call sign up and wait for the result
+    bool success = await _authController.signUp(
+      _emailController.text.trim(),
+      _passwordController.text.trim(),
+    );
+
+    // Navigate to verification page if successful
+    if (success) {
+      Get.toNamed('/profileSetup');
+    } else {
+      print("Sign-up failed. Please try again.");
+    }
   }
 
   Widget _buildOrDivider() {
@@ -267,20 +262,20 @@ class _RegistrationPageState extends State<RegistrationPage> {
     );
   }
 
-  Widget _buildGoogleButton() {
+  Widget _buildSocialButton(String assetPath, String text) {
     return SizedBox(
       width: double.infinity,
       height: AppLayout.buttonHeightMedium,
       child: ElevatedButton.icon(
         onPressed: () {},
         icon: Image.asset(
-          AssetPaths.getImagePath('google.png'),
+          AssetPaths.getImagePath(assetPath),
           width: AppLayout.imageSmall,
           height: AppLayout.imageSmall,
           fit: BoxFit.contain,
         ),
         label: Text(
-          'Continue with Google',
+          text,
           style: AppTypography.buttonText.copyWith(
             color: AppColors.darkColor,
           ),
@@ -289,25 +284,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
     );
   }
 
-  Widget _buildFacebookButton() {
-    return SizedBox(
-      width: double.infinity,
-      height: AppLayout.buttonHeightMedium,
-      child: ElevatedButton.icon(
-        onPressed: () {},
-        icon: Image.asset(
-          AssetPaths.getImagePath('facebook.png'),
-          width: AppLayout.imageSmall,
-          height: AppLayout.imageSmall,
-          fit: BoxFit.contain,
-        ),
-        label: Text(
-          'Continue with Facebook',
-          style: AppTypography.buttonText.copyWith(
-            color: AppColors.darkColor,
-          ),
-        ),
-      ),
-    );
-  }
+  Widget _buildGoogleButton() =>
+      _buildSocialButton('google.png', 'Continue with Google');
+
+  Widget _buildFacebookButton() =>
+      _buildSocialButton('facebook.png', 'Continue with Facebook');
 }

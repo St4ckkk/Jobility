@@ -1,6 +1,6 @@
 import '../../config/imports.dart';
 
-class LoginForm {
+class Forms {
   final Map<String, String> _errors = {};
   
   bool validate(String email, String password) {
