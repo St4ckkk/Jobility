@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'core/config/routes/routes.dart';
+import 'package:firebase_core/firebase_core.dart';
+import './config/firebase_options.dart';
+
+// ...
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await initializeSharedPreferences();
   runApp(const MainApp());
 }
@@ -23,7 +30,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/employeeDashboard',
+      initialRoute: '/signup',
       onGenerateRoute: AppRouter.generateRoute,
     );
   }
