@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'routes.dart'; 
+import '../core/config/routes/routes.dart'; 
 
 class AppRouter {
-  static String _defaultRoute = '/signup';
+  static String _defaultRoute = '/splash';
 
   static String get defaultRoute => _defaultRoute;
 
@@ -13,7 +13,7 @@ class AppRouter {
   static final List<GetPage> routes = AppRoutes.routes.entries.map((entry) {
     return GetPage(
       name: entry.key,
-      page: () => entry.value(Get.context!), // Pass Get.context for context
+      page: () => entry.value(Get.context!), 
     );
   }).toList();
 
@@ -30,7 +30,7 @@ class AppRouter {
     }
   }
 
-  // Retrieve the last route from SharedPreferences
+
   static Future<String?> _getLastRoute() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getString('lastRoute');

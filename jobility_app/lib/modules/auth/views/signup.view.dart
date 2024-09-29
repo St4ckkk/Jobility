@@ -61,7 +61,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           _buildPasswordFormField(),
                         ],
                       )
-                    : SizedBox.shrink();
+                    : const SizedBox.shrink();
               }),
               AppLayout.spaceSmall,
               _buildAgreeAndJoinButton(),
