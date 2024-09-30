@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import '../../../../core/imports.dart';
+import '../../../core/imports.dart';
 
-class EmployeeDashboard extends StatefulWidget {
-  const EmployeeDashboard({super.key});
+class Dashboard extends StatefulWidget {
+  const Dashboard({super.key});
 
   @override
-  State<EmployeeDashboard> createState() => _EmployeeDashboardState();
+  State<Dashboard> createState() => _DashboardState();
 }
 
-class _EmployeeDashboardState extends State<EmployeeDashboard> {
+class _DashboardState extends State<Dashboard> {
   int _selectedIndex = 0;
 
-  // Array of featured jobs
+
   final List<Map<String, dynamic>> featuredJobs = [
     {
       'companyName': 'Facebook',

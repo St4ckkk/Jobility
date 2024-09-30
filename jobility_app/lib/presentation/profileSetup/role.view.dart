@@ -21,6 +21,7 @@ class _RolePageState extends State<RolePage> {
           _buildBackgroundImage(),
           _buildCenteredLogo(context),
           _buildHeaderText(context),
+          _buildContinueButton(),
         ],
       ),
     );
@@ -108,191 +109,209 @@ class _RolePageState extends State<RolePage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              InkWell(
-                onTap: () {
-                  setState(() {
-                    _isJobCardSelected = true;
-                    _isEmployeeCardSelected = false;
-                  });
-                },
-                child: Card(
-                  elevation: 0,
-                  margin: const EdgeInsets.all(10),
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(
-                      color: _isJobCardSelected
-                          ? AppColors.primaryColor
-                          : const Color(0xFFD9D9D9),
-                      width: 2,
-                    ),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  color: Colors.white,
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        top: 20,
-                        left: 0,
-                        right: 0,
-                        child: Center(
-                          child: Container(
-                            width: 50,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: AppColors.primaryColor30,
-                            ),
-                            child: Center(
-                              child: Image.asset(
-                                AssetPaths.getImagePath('suitcase.png'),
-                                width: 20,
-                                height: 20,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        top: 80,
-                        left: 0,
-                        right: 0,
-                        child: Center(
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                width: 100,
-                                child: Text(
-                                  'Find a Job',
-                                  style: AppTypography.subtitleSmall.copyWith(
-                                    color: AppColors.darkColor,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                              SizedBox(
-                                child: Text(
-                                  'I want to find Job',
-                                  style: AppTypography.caption.copyWith(
-                                    fontSize: 12.0,
-                                    color: AppColors.grayAccentColor,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 150,
-                        height: 200,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              _buildJobCard(),
               const SizedBox(width: 20),
-              InkWell(
-                onTap: () {
-                  setState(() {
-                    _isJobCardSelected = false;
-                    _isEmployeeCardSelected = true;
-                  });
-                },
-                child: Card(
-                  elevation: 0,
-                  margin: const EdgeInsets.all(10),
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(
-                      color: _isEmployeeCardSelected
-                          ? AppColors.primaryColor
-                          : const Color(0xFFD9D9D9),
-                      width: 2,
-                    ),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  color: Colors.white,
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        top: 20,
-                        left: 0,
-                        right: 0,
-                        child: Center(
-                          child: Container(
-                            width: 50,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: AppColors.orangeColor30,
-                            ),
-                            child: Center(
-                              child: Image.asset(
-                                AssetPaths.getImagePath('avatar.png'),
-                                width: 20,
-                                height: 20,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        top: 80,
-                        left: 0,
-                        right: 0,
-                        child: Center(
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                width: 100,
-                                child: Text(
-                                  'Find an Employee',
-                                  style: AppTypography.subtitleSmall.copyWith(
-                                    color: AppColors.darkColor,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 100, // adjust the width as needed
-                                child: Text(
-                                  'I want to find Employees',
-                                  style: AppTypography.caption.copyWith(
-                                    fontSize: 12.0,
-                                    color: AppColors.grayAccentColor,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 150,
-                        height: 200,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              _buildEmployeeCard(),
             ],
           ),
-          AppLayout.spaceMedium,
-          SizedBox(
-            width: 350,
-            height: AppLayout.buttonHeightMedium,
-            child: CustomButton(
-              onPressed: () {
-                // Add your Continue button action here
-              },
-              label: 'Continue',
-              backgroundColor: AppColors.primaryColor,
-              textColor: Colors.white,
-              borderColor: AppColors.primaryColor,
-            ),
-          )
         ],
+      ),
+    );
+  }
+
+  Widget _buildJobCard() {
+    return InkWell(
+      onTap: () {
+        setState(() {
+          _isJobCardSelected = true;
+          _isEmployeeCardSelected = false;
+        });
+      },
+      child: Card(
+        elevation: 0,
+        margin: const EdgeInsets.all(10),
+        shape: RoundedRectangleBorder(
+          side: BorderSide(
+            color: _isJobCardSelected
+                ? AppColors.primaryColor
+                : const Color(0xFFD9D9D9),
+            width: 2,
+          ),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        color: Colors.white,
+        child: Stack(
+          children: [
+            Positioned(
+              top: 20,
+              left: 0,
+              right: 0,
+              child: Center(
+                child: Container(
+                  width: 50,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppColors.primaryColor30,
+                  ),
+                  child: Center(
+                    child: Image.asset(
+                      AssetPaths.getImagePath('suitcase.png'),
+                      width: 20,
+                      height: 20,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              top: 80,
+              left: 0,
+              right: 0,
+              child: Center(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      width: 100,
+                      child: Text(
+                        'Find a Job',
+                        style: AppTypography.subtitleSmall.copyWith(
+                          color: AppColors.darkColor,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    SizedBox(
+                      child: Text(
+                        'I want to find Job',
+                        style: AppTypography.caption.copyWith(
+                          fontSize: 12.0,
+                          color: AppColors.grayAccentColor,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(
+              width: 150,
+              height: 200,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildEmployeeCard() {
+    return InkWell(
+      onTap: () {
+        setState(() {
+          _isJobCardSelected = false;
+          _isEmployeeCardSelected = true;
+        });
+      },
+      child: Card(
+        elevation: 0,
+        margin: const EdgeInsets.all(10),
+        shape: RoundedRectangleBorder(
+          side: BorderSide(
+            color: _isEmployeeCardSelected
+                ? AppColors.primaryColor
+                : const Color(0xFFD9D9D9),
+            width: 2,
+          ),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        color: Colors.white,
+        child: Stack(
+          children: [
+            Positioned(
+              top: 20,
+              left: 0,
+              right: 0,
+              child: Center(
+                child: Container(
+                  width: 50,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppColors.orangeColor30,
+                  ),
+                  child: Center(
+                    child: Image.asset(
+                      AssetPaths.getImagePath('avatar.png'),
+                      width: 20,
+                      height: 20,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              top: 80,
+              left: 0,
+              right: 0,
+              child: Center(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      width: 100,
+                      child: Text(
+                        'Find an Employee',
+                        style: AppTypography.subtitleSmall.copyWith(
+                          color: AppColors.darkColor,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 100, // adjust the width as needed
+                      child: Text(
+                        'I want to find Employees',
+                        style: AppTypography.caption.copyWith(
+                          fontSize: 12.0,
+                          color: AppColors.grayAccentColor,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(
+              width: 150,
+              height: 200,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildContinueButton() {
+    return Positioned(
+      bottom: 0,
+      left: 0,
+      right: 0,
+      child: Container(
+        padding: const EdgeInsets.all(16.0),
+        child: SizedBox(
+          width: 350,
+          height: AppLayout.buttonHeightMedium,
+          child: CustomButton(
+            onPressed: () {
+              // Add your Continue button action here
+            },
+            label: 'Continue',
+            backgroundColor: AppColors.primaryColor,
+            textColor: Colors.white,
+            borderColor: AppColors.primaryColor,
+          ),
+        ),
       ),
     );
   }

@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import '../services/auth_services.dart';
-import '../../../models/user_models.dart';
+import '../../../models/user_model.dart';
 import 'package:jobility_app/core/utils/forms/forms.dart';
 
 class AuthController extends GetxController {

@@ -228,7 +228,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
     // Navigate to verification page if successful
     if (success) {
-      Get.toNamed('/profileSetup');
+      Get.toNamed('/roles');
     } else {
       print("Sign-up failed. Please try again.");
     }

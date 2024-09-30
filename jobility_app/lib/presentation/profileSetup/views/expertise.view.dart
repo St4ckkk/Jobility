@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:jobility_app/core/imports.dart';
 
+import '../../../core/assets/functions.dart';
+
 class ExpertiseSelectionPage extends StatefulWidget {
   const ExpertiseSelectionPage({super.key});
 
@@ -10,36 +12,49 @@ class ExpertiseSelectionPage extends StatefulWidget {
 
 class _ExpertiseSelectionPageState extends State<ExpertiseSelectionPage> {
   final Map<String, bool> _expertiseSelections = {
-    'Accountants': false,
-    'Software Developer': false,
-    'Project Manager': false,
-    'HR Specialist': false,
-    'Data Scientist': false,
-    'UX Designer': false,
-    'UI Designer': false,
-    'Business Analyst': false,
-    'Digital Marketer': false,
-    'Content Writer': false,
-    'Sales Specialist': false,
-    'Customer Support': false,
+    'Designer': false,
+    'Developer': false,
+    'Administrative': false,
+    'Marketing': true,
+    'Management': true,
+    'Others': false,
   };
 
   @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: AppLayout.marginLarge, 
-        child: Column(
-          children: [
-            _buildBackButton(),
-            _buildHeaderText(),
-            AppLayout.spaceMedium, 
-            Expanded(
-              child: _buildExpertiseSelection(),
+      body: Stack(
+        children: [
+          _buildBackgroundImage(), 
+          Padding(
+            padding: AppLayout.marginLarge,
+            child: Column(
+              children: [
+                _buildBackButton(),
+                _buildHeaderText(),
+                AppLayout.spaceMedium,
+                Expanded(
+                  child: _buildExpertiseSelection(),
+                ),
+                AppLayout.spaceMedium,
+                _buildContinueButton(),
+              ],
             ),
-            AppLayout.spaceMedium, 
-            _buildContinueButton(),
-          ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildBackgroundImage() {
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(AssetPaths.getImagePath('registration-cover.jpg')),
+          fit: BoxFit.cover,
         ),
       ),
     );
@@ -54,7 +69,7 @@ class _ExpertiseSelectionPageState extends State<ExpertiseSelectionPage> {
             child: const Icon(Icons.arrow_back),
           ),
           onPressed: () {
-            Navigator.pop(context); 
+            Navigator.pop(context);
           },
         ),
         AppLayout.spaceSmallWidth,
@@ -158,9 +173,11 @@ class _ExpertiseCardState extends State<ExpertiseCard> {
         widget.onSelected(!widget.isSelected);
       },
       child: Container(
-        height: 50,
-        width: double.infinity,
+        padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
         decoration: BoxDecoration(
+          color: widget.isSelected
+              ? AppColors.primaryColor.withOpacity(0.1)
+              : Colors.white,
           border: Border.all(
             color: widget.isSelected
                 ? AppColors.primaryColor
@@ -170,25 +187,60 @@ class _ExpertiseCardState extends State<ExpertiseCard> {
         ),
         child: Row(
           children: [
-            Checkbox(
-              value: widget.isSelected,
-              activeColor: AppColors.primaryColor,
-              checkColor: Colors.white,
-              onChanged: (bool? value) {
-                widget.onSelected(value ?? false);
-              },
-            ),
-            Text(
-              widget.expertise,
-              style: AppTypography.bodyMedium.copyWith(
-                color: AppColors.lightAccentColor,
-                fontWeight: FontWeight.w800,
-                fontSize: 16.0,
+            _buildIconForExpertise(widget.expertise), 
+            const SizedBox(width: 10.0),
+            Expanded(
+              child: Text(
+                widget.expertise,
+                style: AppTypography.bodyMedium.copyWith(
+                  color: AppColors.darkColor,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16.0,
+                ),
               ),
             ),
+            const SizedBox(width: 10.0),
+            _buildCustomCheckIcon(
+                widget.isSelected), // Moved checkbox to the right
           ],
         ),
       ),
     );
+  }
+
+  Widget _buildCustomCheckIcon(bool isSelected) {
+    return Container(
+      height: 24,
+      width: 24,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        border: Border.all(
+          color: isSelected ? AppColors.primaryColor : AppColors.accentColor,
+        ),
+        color: isSelected ? AppColors.primaryColor : Colors.white,
+      ),
+      child: isSelected
+          ? const Icon(Icons.check, color: Colors.white, size: 16.0)
+          : null,
+    );
+  }
+
+  Widget _buildIconForExpertise(String expertise) {
+    switch (expertise) {
+      case 'Designer':
+        return const Icon(Icons.design_services, color: Colors.blueAccent);
+      case 'Developer':
+        return const Icon(Icons.code, color: Colors.green);
+      case 'Administrative':
+        return const Icon(Icons.admin_panel_settings, color: Colors.orange);
+      case 'Marketing':
+        return const Icon(Icons.campaign, color: Colors.redAccent);
+      case 'Management':
+        return const Icon(Icons.manage_accounts, color: Colors.purple);
+      case 'Others':
+        return const Icon(Icons.more_horiz, color: Colors.grey);
+      default:
+        return const Icon(Icons.help_outline, color: Colors.black);
+    }
   }
 }
