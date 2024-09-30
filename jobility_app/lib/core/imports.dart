@@ -5,17 +5,17 @@ export '../src/styles/app.typography.dart';
 export 'utils/Validator.dart';
 export 'utils/Forms/forms.dart';
 
-export '../presentation/profileSetup/role.view.dart';
-export '../presentation/auth/views/signup.view.dart';
-export '../presentation/auth/views/signin.view.dart';
-export '../presentation/profileSetup/views/profile.view.dart';
-export '../presentation/profileSetup/views/expertise.view.dart';
-export '../presentation/dashboard/views/dashboard.view.dart';
-export '../presentation/dashboard/views/widgets/featured.view.dart';
-export '../presentation/dashboard/views/widgets/recommend.view.dart';
+export '../screens/profileSetup/views/role.view.dart';
+export '../screens/auth/views/signup.view.dart';
+export '../screens/auth/views/signin.view.dart';
+export '../screens/profileSetup/views/profile.view.dart';
+export '../screens/profileSetup/views/expertise.view.dart';
+export '../screens/home/views/dashboard.view.dart';
+export '../screens/home/views/widgets/featured.view.dart';
+export '../screens/home/views/widgets/recommend.view.dart';
 
-export '../presentation/splash/views/splash.view.dart';
-export '../presentation/welcome/welcome.view.dart';
+export '../screens/splash/views/splash.view.dart';
+export '../screens/welcome/views/welcome.view.dart';
 
 export '../widgets/custom_buttons.dart';
 export '../widgets/custom_textFormField.dart';

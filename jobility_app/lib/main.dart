@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobility_app/presentation/welcome/welcome.view.dart';
+import 'package:jobility_app/screens/welcome/views/welcome.view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'config/router.dart';
 import 'package:firebase_core/firebase_core.dart';

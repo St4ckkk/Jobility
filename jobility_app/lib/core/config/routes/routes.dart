@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jobility_app/presentation/profileSetup/views/job.view.dart';
-import '../../../presentation/profileSetup/views/job_preferences.view.dart';
+import 'package:jobility_app/screens/profileSetup/views/jobType.view.dart';
+import '../../../screens/profileSetup/views/job_preferences.view.dart';
 import '../../imports.dart';
 
 class AppRoutes {

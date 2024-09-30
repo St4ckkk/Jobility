@@ -46,13 +46,13 @@ class _JobPreferencesPageState extends State<JobPreferencesPage> {
     return Scaffold(
       body: Stack(
         children: [
-          _buildBackgroundImage(), // Keeping the background image
+          _buildBackgroundImage(), 
           Padding(
             padding: AppLayout.marginLarge,
             child: Column(
               children: [
-                _buildBackButton(), // Keeping the back button
-                _buildHeaderText(),
+                _buildBackButton(), 
+                // _buildHeaderText(),
                 AppLayout.spaceMedium,
                 Expanded(
                   child: ListView(
@@ -106,7 +106,7 @@ class _JobPreferencesPageState extends State<JobPreferencesPage> {
         ),
         AppLayout.spaceSmallWidth,
         Text(
-          'Back',
+          'Job Preferences',
           style: AppTypography.buttonText.copyWith(
             color: AppColors.darkColor,
             fontWeight: FontWeight.w600,
@@ -117,31 +117,31 @@ class _JobPreferencesPageState extends State<JobPreferencesPage> {
     );
   }
 
-  Widget _buildHeaderText() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        AppLayout.spaceMedium,
-        Container(
-          child: Text(
-            'Customize Your Job Search: Accessibility Preferences',
-            style: AppTypography.headlineLarge.copyWith(
-              color: AppColors.darkColor,
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ),
-        AppLayout.spaceSmall,
-        Text(
-          'Please select your preferred job roles, locations, job types, and office settings to find job opportunities that cater to your needs.',
-          style: AppTypography.bodyMedium.copyWith(
-            color: AppColors.darkColor,
-          ),
-          textAlign: TextAlign.center,
-        ),
-      ],
-    );
-  }
+  // Widget _buildHeaderText() {
+  //   return Column(
+  //     mainAxisAlignment: MainAxisAlignment.start,
+  //     children: [
+  //       AppLayout.spaceMedium,
+  //       Container(
+  //         child: Text(
+  //           'Customize Your Job Search: Accessibility Preferences',
+  //           style: AppTypography.headlineLarge.copyWith(
+  //             color: AppColors.darkColor,
+  //           ),
+  //           textAlign: TextAlign.center,
+  //         ),
+  //       ),
+  //       AppLayout.spaceSmall,
+  //       Text(
+  //         'Please select your preferred job roles, locations, job types, and office settings to find job opportunities that cater to your needs.',
+  //         style: AppTypography.bodyMedium.copyWith(
+  //           color: AppColors.darkColor,
+  //         ),
+  //         textAlign: TextAlign.center,
+  //       ),
+  //     ],
+  //   );
+  // }
 
   Widget _buildJobRolesSelection() {
     return _buildSectionWithTitle(
