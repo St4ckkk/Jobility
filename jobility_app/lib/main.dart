@@ -1,23 +1,32 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jobility_app/presentation/welcome/main.view.dart';
+import 'package:jobility_app/presentation/welcome/main.view.dart'; // Assuming this is your HomePage
 import 'package:shared_preferences/shared_preferences.dart';
 import 'config/router.dart';
 import 'package:firebase_core/firebase_core.dart';
 import './config/firebase_options.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  setUrlStrategy(PathUrlStrategy());
+
   await initializeSharedPreferences();
+
   runApp(const MainApp());
 }
 
 Future<void> initializeSharedPreferences() async {
   final prefs = await SharedPreferences.getInstance();
   final lastRoute = prefs.getString('lastRoute');
+
   if (lastRoute != null) {
     AppRouter.defaultRoute = lastRoute;
   }
@@ -28,11 +37,11 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp( 
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: AppRouter.defaultRoute,
-      getPages: AppRouter.routes, 
-      home: const HomePage(), 
+      getPages: AppRouter.routes,
+      home: const HomePage(),
     );
   }
 }
