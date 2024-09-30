@@ -36,7 +36,6 @@ class AppRouter {
     return prefs.getString('lastRoute');
   }
 
-  // Navigate to the last route
   static Future<void> navigateToLastRoute() async {
     final lastRoute = await _getLastRoute();
     if (lastRoute != null) {

@@ -28,7 +28,7 @@ class AuthController extends GetxController {
 
   Future<bool> signUp(String email, String password) async {
     bool isValid =
-        _forms.validate(email, password); // Validate both email & password
+        _forms.validate(email, password); 
     emailError.value = _forms.errors()['email'] ?? '';
     passwordError.value = _forms.errors()['password'] ?? '';
 
