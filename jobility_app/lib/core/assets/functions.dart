@@ -3,3 +3,5 @@ class AssetPaths {
     return 'assets/images/$imageName';
   }
 }
+
+

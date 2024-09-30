@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jobility_app/core/functions.dart';
+import 'package:jobility_app/core/assets/functions.dart';
 import 'package:jobility_app/core/imports.dart';
 
 class RolePage extends StatefulWidget {

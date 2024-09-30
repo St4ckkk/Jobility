@@ -2,7 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/imports.dart';
-import '../../../core/functions.dart';
+import '../../../core/assets/functions.dart';
 import '../controllers/auth_controllers.dart';
 
 class RegistrationPage extends StatefulWidget {
