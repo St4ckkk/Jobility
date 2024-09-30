@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../../core/config/imports.dart';
+import '../../../../../core/imports.dart';
 
 class FeaturedJobsView extends StatelessWidget {
   final List<Map<String, dynamic>> featuredJobs;
@@ -20,7 +20,7 @@ class FeaturedJobsView extends StatelessWidget {
                 )),
             GestureDetector(
               onTap: () {
-                // Navigate to see all jobs page
+
               },
               child: Text(
                 'See all',

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jobility_app/core/config/imports.dart';
+import 'package:jobility_app/core/imports.dart';
 
 class CustomBottomBar extends StatefulWidget {
   final int currentIndex;

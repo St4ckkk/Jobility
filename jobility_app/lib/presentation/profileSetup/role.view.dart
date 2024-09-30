@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jobility_app/core/config/functions.dart';
-import 'package:jobility_app/core/config/imports.dart';
+import 'package:jobility_app/core/functions.dart';
+import 'package:jobility_app/core/imports.dart';
 
 class RolePage extends StatefulWidget {
   const RolePage({super.key});

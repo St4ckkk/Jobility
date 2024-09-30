@@ -1,4 +1,4 @@
-import '../../config/imports.dart';
+import '../../imports.dart';
 
 class Forms {
   final Map<String, String> _errors = {};

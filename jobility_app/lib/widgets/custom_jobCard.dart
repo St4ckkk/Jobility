@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:jobility_app/core/config/functions.dart';
+import 'package:jobility_app/core/functions.dart';
 
 class FeaturedJobCard extends StatelessWidget {
   final String companyName;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../core/config/imports.dart';
+import '../core/imports.dart';
 
 class CustomButton extends StatelessWidget {
   final VoidCallback onPressed;

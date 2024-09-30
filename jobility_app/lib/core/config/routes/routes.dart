@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../imports.dart';
+import '../../imports.dart';
 
 class AppRoutes {
   // Keep the routes map private
@@ -14,6 +14,5 @@ class AppRoutes {
     '/employeeDashboard': (_) => const EmployeeDashboard(),
   };
 
-  // Provide a public getter for the routes
   static Map<String, WidgetBuilder> get routes => _routes;
 }

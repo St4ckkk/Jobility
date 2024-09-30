@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jobility_app/core/config/functions.dart';
-import '../core/config/imports.dart';
+import 'package:jobility_app/core/functions.dart';
+import '../core/imports.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../../core/config/imports.dart';
-import '../../../../core/config/functions.dart';
+import '../../../core/imports.dart';
+import '../../../core/functions.dart';
 import 'package:flutter/gestures.dart';
 
 class LoginPage extends StatefulWidget {
