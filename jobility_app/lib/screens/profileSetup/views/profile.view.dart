@@ -22,6 +22,12 @@ class _ProfileState extends State<Profile> {
   final TextEditingController _skillsController = TextEditingController();
   final TextEditingController _experienceController = TextEditingController();
   final TextEditingController _educationController = TextEditingController();
+  final TextEditingController _bioController = TextEditingController();
+  final TextEditingController _locationController = TextEditingController();
+  final TextEditingController _startDateController = TextEditingController();
+  final TextEditingController _endDateController = TextEditingController();
+  final TextEditingController _experienceDescriptionController =
+      TextEditingController();
 
   XFile? _image;
 
@@ -127,9 +133,11 @@ class _ProfileState extends State<Profile> {
           const SizedBox(height: 20),
           _buildSkillsField(),
           const SizedBox(height: 20),
-          _buildEducationFields(), // Updated to use a method for education fields
+          _buildEducationFields(),
           const SizedBox(height: 20),
-          _buildExperienceField(), // Updated to use a method for experience field
+          _buildExperienceField(),
+          const SizedBox(height: 20),
+          _buildBioField(),
           const SizedBox(height: 32),
         ],
       ),
@@ -167,11 +175,58 @@ class _ProfileState extends State<Profile> {
       children: [
         const Text("Experience",
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-        const SizedBox(height: 10),
+        const SizedBox(height: 20),
         CustomTextFormField(
           controller: _experienceController,
-          labelText: "Work Experience (e.g., Internship, Job Title)",
-          maxLines: 3, // Allow multiple lines for experience description
+          labelText: "Company Name",
+        ),
+        const SizedBox(height: 20),
+        CustomTextFormField(
+          controller: _locationController,
+          labelText: "Company Location",
+        ),
+        const SizedBox(height: 20),
+        Row(
+          children: [
+            Expanded(
+              child: CustomTextFormField(
+                controller: _startDateController,
+                labelText: "Start Month/Year",
+                keyboardType: TextInputType.datetime,
+              ),
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: CustomTextFormField(
+                controller: _endDateController,
+                labelText: "End Month/Year",
+                keyboardType: TextInputType.datetime,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 20),
+        CustomTextFormField(
+          controller: _experienceDescriptionController,
+          labelText: "Experience Description",
+          maxLines: 3,
+          keyboardType: TextInputType.multiline,
+        ),
+      ],
+    );
+  }
+
+  Widget _buildBioField() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text("Bio",
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+        const SizedBox(height: 10),
+        CustomTextFormField(
+          controller: _bioController,
+          labelText: "Tell us about yourself",
+          maxLines: 4,
           keyboardType: TextInputType.multiline,
         ),
       ],
@@ -278,76 +333,47 @@ class _ProfileState extends State<Profile> {
     );
   }
 
-  Widget _buildPhonePrefix() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Image(
-            image: AssetImage(AssetPaths.getImagePath('flag_ph.png')),
-            width: 24,
-            height: 24,
-          ),
-          const SizedBox(width: 8),
-          const Text("+63"),
-        ],
-      ),
-    );
-  }
-
   Widget _buildPhoneField() {
     return CustomTextFormField(
       controller: _phoneController,
       labelText: "Phone Number",
       keyboardType: TextInputType.phone,
-      prefixIcon: _buildPhonePrefix(),
-    );
-  }
-
-  Widget _buildSkillsField() {
-    return TextFormField(
-      controller: _skillsController,
-      decoration: InputDecoration(
-        hintText: "Skills (e.g., Programming, Design)",
-        border: _inputBorder(),
-        filled: true,
-        fillColor: Colors.white,
-        enabledBorder: _inputBorder(),
-        focusedBorder: _inputBorder(color: Colors.blue),
-      ),
-      maxLines: 3, 
-      keyboardType: TextInputType.multiline,
     );
   }
 
   Widget _buildGenderField() {
-    return DropdownButtonFormField<String>(
-      decoration: InputDecoration(
-        hintText: "Gender",
-        border: _inputBorder(),
-        filled: true,
-        fillColor: Colors.white,
-        enabledBorder: _inputBorder(color: AppColors.grayAccentColor),
-        focusedBorder: _inputBorder(color: AppColors.primaryColor),
-      ),
-      items: ["Male", "Female", "Other"].map((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        );
-      }).toList(),
-      onChanged: (newValue) {
-        // Handle gender selection
-      },
+    return Row(
+      children: [
+        Expanded(
+          child: ListTile(
+            title: const Text('Male'),
+            leading: Radio(
+              value: 'Male',
+              groupValue: null, // update with your state
+              onChanged: (value) {},
+            ),
+          ),
+        ),
+        Expanded(
+          child: ListTile(
+            title: const Text('Female'),
+            leading: Radio(
+              value: 'Female',
+              groupValue: null, // update with your state
+              onChanged: (value) {},
+            ),
+          ),
+        ),
+      ],
     );
   }
 
-  Widget _buildDisabilityField() {
-    return _buildInputField(
-      controller: _disabilityController,
-      hintText: "Disability",
-      inputType: TextInputType.text,
+  Widget _buildSkillsField() {
+    return CustomTextFormField(
+      controller: _skillsController,
+      labelText: "Skills",
+      maxLines: 3,
+      keyboardType: TextInputType.multiline,
     );
   }
 
