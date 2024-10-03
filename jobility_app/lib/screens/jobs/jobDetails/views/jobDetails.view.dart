@@ -8,7 +8,8 @@ class JobDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView( // Make the entire page scrollable
+      body: SingleChildScrollView(
+        // Make the entire page scrollable
         child: Column(
           children: [
             _buildHeader(context),
@@ -37,12 +38,12 @@ class JobDetails extends StatelessWidget {
           Row(
             children: [
               IconButton(
-                icon: const Icon(Icons.arrow_back, color: Colors.white),
+                icon: const Icon(Icons.arrow_back, color: Colors.white, size: 30),
                 onPressed: () => Navigator.of(context).pop(),
               ),
               const Spacer(),
               IconButton(
-                icon: const Icon(Icons.bookmark_border, color: Colors.white),
+                icon: const Icon(Icons.bookmark_border, color: Colors.white, size: 30),
                 onPressed: () {},
               ),
             ],
@@ -51,10 +52,13 @@ class JobDetails extends StatelessWidget {
           Center(
             child: Column(
               children: [
-                CircleAvatar(
-                  radius: 30,
-                  backgroundColor: Colors.white,
-                  child: Image.asset('assets/facebook-logo.png', height: 40),
+                ClipOval(
+                  child: Image.asset(
+                    AssetPaths.getImagePath('logo-medium.png'),
+                    width: 100,
+                    height: 100,
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 const SizedBox(height: 10),
                 const Text(
@@ -87,9 +91,15 @@ class JobDetails extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: const [
               Text('\$180,000/year',
-                  style: TextStyle(color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold)),
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold)),
               Text('Seattle, USA',
-                  style: TextStyle(color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold)),
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold)),
             ],
           ),
         ],
@@ -117,6 +127,7 @@ class JobDetails extends StatelessWidget {
       child: Column(
         children: [
           TabBar(
+            dividerColor: Colors.transparent,
             labelColor: Colors.black,
             unselectedLabelColor: AppColors.grayAccentColor,
             indicatorColor: AppColors.primaryColor,
