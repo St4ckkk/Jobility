@@ -1,30 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:jobility_app/core/imports.dart';
 
-import '../../../core/assets/functions.dart';
+import '../../../../core/assets/functions.dart';
 
-class JobPage extends StatefulWidget {
-  const JobPage({super.key});
+class ExpertiseSelectionPage extends StatefulWidget {
+  const ExpertiseSelectionPage({super.key});
 
   @override
-  State<JobPage> createState() => _JobPageState();
+  _ExpertiseSelectionPageState createState() => _ExpertiseSelectionPageState();
 }
 
-class _JobPageState extends State<JobPage> {
-  final Map<String, bool> _jobTypeSelections = {
-    'Full-time': false,
-    'Part-time': false,
-    'Contract': false,
-    'Internship': false,
-    'Freelance': false,
+class _ExpertiseSelectionPageState extends State<ExpertiseSelectionPage> {
+  final Map<String, bool> _expertiseSelections = {
+    'Designer': false,
+    'Developer': false,
+    'Administrative': false,
+    'Marketing': true,
+    'Management': true,
+    'Others': false,
   };
 
+  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-          _buildBackgroundImage(),
+          _buildBackgroundImage(), 
           Padding(
             padding: AppLayout.marginLarge,
             child: Column(
@@ -33,7 +35,7 @@ class _JobPageState extends State<JobPage> {
                 _buildHeaderText(),
                 AppLayout.spaceMedium,
                 Expanded(
-                  child: _buildJobTypeSelection(),
+                  child: _buildExpertiseSelection(),
                 ),
                 AppLayout.spaceMedium,
                 _buildContinueButton(),
@@ -90,7 +92,7 @@ class _JobPageState extends State<JobPage> {
         AppLayout.spaceMedium,
         Container(
           child: Text(
-            'What type of job are you looking for?',
+            'What is your Field of Expertise?',
             style: AppTypography.headlineLarge.copyWith(
               color: AppColors.darkColor,
             ),
@@ -100,7 +102,7 @@ class _JobPageState extends State<JobPage> {
         AppLayout.spaceSmall,
         Container(
           child: Text(
-            'Please select the type of job that suits you (You can select multiple)',
+            'Please select your field of expertise (Up to 5)',
             style: AppTypography.bodySmall.copyWith(
               color: AppColors.lightAccentColor,
               fontWeight: FontWeight.w500,
@@ -113,17 +115,17 @@ class _JobPageState extends State<JobPage> {
     );
   }
 
-  Widget _buildJobTypeSelection() {
+  Widget _buildExpertiseSelection() {
     return ListView(
-      children: _jobTypeSelections.keys.map((String key) {
+      children: _expertiseSelections.keys.map((String key) {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
           child: ExpertiseCard(
             expertise: key,
-            isSelected: _jobTypeSelections[key] ?? false,
+            isSelected: _expertiseSelections[key] ?? false,
             onSelected: (bool isSelected) {
               setState(() {
-                _jobTypeSelections[key] = isSelected;
+                _expertiseSelections[key] = isSelected;
               });
             },
           ),
@@ -185,7 +187,7 @@ class _ExpertiseCardState extends State<ExpertiseCard> {
         ),
         child: Row(
           children: [
-            _buildIconForJobType(widget.expertise),
+            _buildIconForExpertise(widget.expertise), 
             const SizedBox(width: 10.0),
             Expanded(
               child: Text(
@@ -198,7 +200,8 @@ class _ExpertiseCardState extends State<ExpertiseCard> {
               ),
             ),
             const SizedBox(width: 10.0),
-            _buildCustomCheckIcon(widget.isSelected),
+            _buildCustomCheckIcon(
+                widget.isSelected), // Moved checkbox to the right
           ],
         ),
       ),
@@ -222,18 +225,20 @@ class _ExpertiseCardState extends State<ExpertiseCard> {
     );
   }
 
-  Widget _buildIconForJobType(String jobType) {
-    switch (jobType) {
-      case 'Full-time':
-        return const Icon(Icons.work, color: Colors.blueAccent);
-      case 'Part-time':
-        return const Icon(Icons.timer, color: Colors.green);
-      case 'Contract':
-        return const Icon(Icons.assignment, color: Colors.orange);
-      case 'Internship':
-        return const Icon(Icons.school, color: Colors.redAccent);
-      case 'Freelance':
-        return const Icon(Icons.laptop_mac, color: Colors.purple);
+  Widget _buildIconForExpertise(String expertise) {
+    switch (expertise) {
+      case 'Designer':
+        return const Icon(Icons.design_services, color: Colors.blueAccent);
+      case 'Developer':
+        return const Icon(Icons.code, color: Colors.green);
+      case 'Administrative':
+        return const Icon(Icons.admin_panel_settings, color: Colors.orange);
+      case 'Marketing':
+        return const Icon(Icons.campaign, color: Colors.redAccent);
+      case 'Management':
+        return const Icon(Icons.manage_accounts, color: Colors.purple);
+      case 'Others':
+        return const Icon(Icons.more_horiz, color: Colors.grey);
       default:
         return const Icon(Icons.help_outline, color: Colors.black);
     }

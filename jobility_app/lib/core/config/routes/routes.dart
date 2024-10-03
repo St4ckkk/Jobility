@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jobility_app/screens/profileSetup/views/jobType.view.dart';
-import '../../../screens/profileSetup/views/job_preferences.view.dart';
+import 'package:jobility_app/screens/jobs/jobDetails/views/jobDetails.view.dart';
+import 'package:jobility_app/screens/profile/profileSetup/views/jobType.view.dart';
+import '../../../screens/profile/profileSetup/views/job_preferences.view.dart';
 import '../../imports.dart';
 
 class AppRoutes {
@@ -17,6 +18,7 @@ class AppRoutes {
     '/expertise': (_) => const ExpertiseSelectionPage(),
     '/job': (_) => const JobPage(),
     '/jobPreferences': (_) => const JobPreferencesPage(),
+    '/jobDetails': (_) => const JobDetails(),
   };
 
   static Map<String, WidgetBuilder> get routes => _routes;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jobility_app/core/imports.dart';
 
-import '../../../core/assets/functions.dart';
+import '../../../../core/assets/functions.dart';
 
 class JobPreferencesPage extends StatefulWidget {
   const JobPreferencesPage({super.key});

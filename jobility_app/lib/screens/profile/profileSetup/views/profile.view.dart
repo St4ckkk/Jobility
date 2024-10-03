@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
-import '../../../core/assets/functions.dart';
-import '../../../core/imports.dart';
+import '../../../../core/assets/functions.dart';
+import '../../../../core/imports.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});

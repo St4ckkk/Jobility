@@ -15,7 +15,8 @@ class AuthController extends GetxController {
 
   // Email validation
   void validateEmail(String email) {
-    _forms.validate(email, ''); // Validate only email here
+    _forms.validate(email, ''); 
+     
     emailError.value = _forms.errors()['email'] ?? '';
     showPasswordField.value = emailError.value.isEmpty;
   }

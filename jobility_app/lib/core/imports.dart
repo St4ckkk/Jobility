@@ -5,11 +5,11 @@ export '../src/styles/app.typography.dart';
 export 'utils/Validator.dart';
 export 'utils/Forms/forms.dart';
 
-export '../screens/profileSetup/views/role.view.dart';
+export '../screens/profile/profileSetup/views/role.view.dart';
 export '../screens/auth/views/signup.view.dart';
 export '../screens/auth/views/signin.view.dart';
-export '../screens/profileSetup/views/profile.view.dart';
-export '../screens/profileSetup/views/expertise.view.dart';
+export '../screens/profile/profileSetup/views/profile.view.dart';
+export '../screens/profile/profileSetup/views/expertise.view.dart';
 export '../screens/home/views/dashboard.view.dart';
 export '../screens/home/views/widgets/featured.view.dart';
 export '../screens/home/views/widgets/recommend.view.dart';
